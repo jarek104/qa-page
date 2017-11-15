@@ -7,5 +7,6 @@ export interface Ivm {
     wvmBuildInstalled: string;
     wvmComment: string;
     wvmLauncher: string;
+    // This should have 'Copy URL' button
 }
 

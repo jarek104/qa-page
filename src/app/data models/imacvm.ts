@@ -6,5 +6,6 @@ export interface Ivm {
     mvmOS: string;
     mvmComment: string;
     mvmLauncher: string;
+    // This should have 'Copy URL' button
 }
 

@@ -3,5 +3,7 @@ export interface Ilink {
     linkName: string;
     linkURL: string;
     linkDescription: string;
+    linkColor: string;
+    linkClickCounter: number;
     // This should have 'Copy URL' button
 }
