@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VmsComponent } from './vms/vms.component';
 import { LinksComponent } from './links/links.component';
+import { LinksEditComponent } from './links/links-edit.component';
+import { VmsEditComponent } from './vms/vms-edit.component';
 
 const routes: Routes = [
   { path: 'vms', component: VmsComponent},
