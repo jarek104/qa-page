@@ -9,3 +9,9 @@
 #outlet {
   margin-top: 80px;
 }
+a.active {
+  color: green !important;
+}
+.navlink {
+  font-size: 25px !important;
+}

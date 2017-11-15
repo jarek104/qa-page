@@ -5,7 +5,9 @@ import { LinksComponent } from './links/links.component';
 
 const routes: Routes = [
   { path: 'vms', component: VmsComponent},
-  { path: 'links', component: LinksComponent}
+  { path: 'links', component: LinksComponent},
+  { path: '' , redirectTo: '/vms', pathMatch: 'full'},
+  { path: '**' , component: VmsComponent}
 ];
 
 @NgModule({
