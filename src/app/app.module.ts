@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VmsComponent } from './vms/vms.component';
 import { LinksComponent } from './links/links.component';
+import { VmsEditComponent } from './vms/vms-edit.component';
+import { LinksEditComponent } from './links/links-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VmsComponent,
-    LinksComponent
+    LinksComponent,
+    VmsEditComponent,
+    LinksEditComponent
   ],
   imports: [
     BrowserModule,

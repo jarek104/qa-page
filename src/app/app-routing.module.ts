@@ -5,7 +5,9 @@ import { LinksComponent } from './links/links.component';
 
 const routes: Routes = [
   { path: 'vms', component: VmsComponent},
+  { path: 'vmsedit', component: VmsEditComponent},
   { path: 'links', component: LinksComponent},
+  { path: 'linksedit', component: LinksEditComponent},
   { path: '' , redirectTo: '/vms', pathMatch: 'full'},
   { path: '**' , component: VmsComponent}
 ];
