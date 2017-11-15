@@ -19,7 +19,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "qa",
       "styles": [
+<<<<<<< HEAD
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+=======
+>>>>>>> 005769d10651f3644d7a44d8b7c5072b0f8a6f80
         "styles.css"
       ],
       "scripts": [],
