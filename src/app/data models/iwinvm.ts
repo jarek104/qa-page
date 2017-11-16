@@ -6,7 +6,6 @@ export interface Iwinvm {
     wvmDotNet: string;
     wvmBuildInstalled: string;
     wvmComment: string;
-    wvmLauncher: string;
     // This should have 'Copy URL' button
 }
 

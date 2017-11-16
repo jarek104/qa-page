@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+
+
 /*
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
 .navbar-collapse {
   text-align:center;
 }
@@ -14,7 +15,15 @@
 a.active {
   color: green !important;
 }
-.navlink {
-  font-size: 25px !important;
-}
+
 */
+
+.nav-link {
+    font-size: 22px;
+    margin: 2px;
+    margin-right: 20px;
+}
+
+.glyphicon.glyphicon-globe {
+    font-size: 40px;
+}

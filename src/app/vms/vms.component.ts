@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Iwinvm } from '../data models/iwinvm';
+import { Imacvm } from '../data models/imacvm';
+import { VmsService } from '../services/vms-service.service';
 
 @Component({
   selector: 'qa-vms',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VmsComponent implements OnInit {
 
-  constructor() { }
+  winwms: Iwinvm[];
+  macvms: Imacvm[] = [];
+  errorMessage: string;
+  constructor(private _wmsService: VmsService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // this._wmsService.getWindowWms().subscribe (
+    //   vms => { this.winwms = vms; },
+    //   error => this.errorMessage = <any>error
+    this.getWinWms();
+
   }
-
+  getWindowWms(): void {
+    this._wmsService.getWindowWms()
+    .subscribe(vms => this.winwms = vms);
+  }
+  getWinWms(): void {
+    this._wmsService.getWinWms()
+    .subscribe(vms => this.winwms = vms);
+  }
 }
