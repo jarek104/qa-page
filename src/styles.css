@@ -17,7 +17,6 @@ a.active {
 }
 
 */
-
 .nav-link {
     font-size: 22px;
     margin: 2px;
@@ -40,6 +39,7 @@ html
 }
 tr:hover {
   cursor: pointer;
+  background: #475664 !important;
 }
 .modal-header {
   height: 90px;
@@ -48,6 +48,13 @@ tr:hover {
   margin-top:100px;
 }
 .vmInUse {
-  background: #384858 !important;
-  color: darkgrey;
+   background: #4b637a !important;
+   color: rgb(153, 153, 153);
 }
+thead {
+  background: #4f5d6b !important;
+}
+th, td {
+  border: 1px solid #4E5D6C !important;
+}
+/* f1dede 384858 normal row: 2d3e4f*/
