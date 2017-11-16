@@ -10,11 +10,13 @@ import { VmsService } from '../services/vms-service';
 })
 export class VmsComponent implements OnInit {
 
-  selectedWinVm: Winvm;
+  selectedWinVm = new Winvm(0, '', '', '', '', '', '');
   selectedMacVm: Imacvm;
   winvms: Winvm[];
   macvms: Imacvm[] = [];
   errorMessage: string;
+  submitted = false;
+
   constructor(private _vmsService: VmsService) { }
 
   ngOnInit(): void {
@@ -34,5 +36,9 @@ export class VmsComponent implements OnInit {
   }
   onWinVmSelect(winvm: Winvm): void {
     this.selectedWinVm = winvm;
+  }
+  onSubmit() {
+    alert(1);
+    this.submitted = true;
   }
 }

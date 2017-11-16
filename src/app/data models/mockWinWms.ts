@@ -21,7 +21,7 @@ export const WINVMS: Winvm[] = [{
 {
     'wvmID': 3,
     'wvmName': 'QAV-005435',
-    'wvmCurrentUser': 'May',
+    'wvmCurrentUser': '',
     'wvmOS': 'Windows Server 2012',
     'wvmDotNet': '4.5',
     'wvmBuildInstalled': '15.0.2.5',
@@ -30,7 +30,7 @@ export const WINVMS: Winvm[] = [{
 {
     'wvmID': 4,
     'wvmName': 'QAV-000697',
-    'wvmCurrentUser': 'Eric',
+    'wvmCurrentUser': '',
     'wvmOS': 'Windows 10',
     'wvmDotNet': '4.5',
     'wvmBuildInstalled': '17.1.0.5',
@@ -48,7 +48,7 @@ export const WINVMS: Winvm[] = [{
 {
     'wvmID': 6,
     'wvmName': 'QAV-005435',
-    'wvmCurrentUser': 'Adam',
+    'wvmCurrentUser': '',
     'wvmOS': 'Windows Server 2008',
     'wvmDotNet': '4.5',
     'wvmBuildInstalled': '15.0.2.5',

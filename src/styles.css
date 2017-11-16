@@ -41,3 +41,13 @@ html
 tr:hover {
   cursor: pointer;
 }
+.modal-header {
+  height: 90px;
+}
+.modal {
+  margin-top:100px;
+}
+.vmInUse {
+  background: #384858 !important;
+  color: darkgrey;
+}
