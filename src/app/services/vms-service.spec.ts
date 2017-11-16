@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { VmsService } from './vms-service.service';
+import { VmsService } from './vms-service';
 
 describe('VmsServiceService', () => {
   beforeEach(() => {

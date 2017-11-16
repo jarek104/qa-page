@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Iwinvm } from '../data models/iwinvm';
+import { Winvm } from '../data models/winvm';
 import { Imacvm } from '../data models/imacvm';
-import { VmsService } from '../services/vms-service.service';
+import { VmsService } from '../services/vms-service';
 
 @Component({
   selector: 'qa-vms',
@@ -10,24 +10,29 @@ import { VmsService } from '../services/vms-service.service';
 })
 export class VmsComponent implements OnInit {
 
-  winwms: Iwinvm[];
+  selectedWinVm: Winvm;
+  selectedMacVm: Imacvm;
+  winvms: Winvm[];
   macvms: Imacvm[] = [];
   errorMessage: string;
-  constructor(private _wmsService: VmsService) { }
+  constructor(private _vmsService: VmsService) { }
 
   ngOnInit(): void {
     // this._wmsService.getWindowWms().subscribe (
     //   vms => { this.winwms = vms; },
     //   error => this.errorMessage = <any>error
-    this.getWinWms();
+    this.getWinVms();
 
   }
-  getWindowWms(): void {
-    this._wmsService.getWindowWms()
-    .subscribe(vms => this.winwms = vms);
+  getWindowVms(): void {
+    this._vmsService.getWindowVms()
+    .subscribe(vms => this.winvms = vms);
   }
-  getWinWms(): void {
-    this._wmsService.getWinWms()
-    .subscribe(vms => this.winwms = vms);
+  getWinVms(): void {
+    this._vmsService.getWinVms()
+    .subscribe(vms => this.winvms = vms);
+  }
+  onWinVmSelect(winvm: Winvm): void {
+    this.selectedWinVm = winvm;
   }
 }

@@ -1,6 +1,6 @@
-import { Iwinvm } from './iwinvm';
+import { Winvm } from './winvm';
 
-export const WINVMS: Iwinvm[] = [{
+export const WINVMS: Winvm[] = [{
     'wvmID': 1,
     'wvmName': 'QAV-000697',
     'wvmCurrentUser': 'Jerry',
