@@ -1,21 +1,31 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="page">
-  <header class="container">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="nav">
-            <a routerLink="/vms" routerLinkActive="active" class="navlink">VM Dashboard</a>
-          </li>
-          <li class="nav">
-            <a routerLink="/links" routerLinkActive="active" class="navlink">Team links</a>
-          </li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">.</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a routerLink="/vms" routerLinkActive="active" class="nav-link">VM Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/links" routerLinkActive="active" class="nav-link">Team links</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
         </ul>
-      </div>
-    </nav>
-  </header>
-  <section class="container" id="outlet">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+
+<section class="container" id="outlet">
     <router-outlet></router-outlet>
-  </section>
-</div>
+</section>

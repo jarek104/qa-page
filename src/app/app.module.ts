@@ -7,6 +7,7 @@ import { VmsComponent } from './vms/vms.component';
 import { LinksComponent } from './links/links.component';
 import { VmsEditComponent } from './vms/vms-edit.component';
 import { LinksEditComponent } from './links/links-edit.component';
+import { VmsService } from './services/vms-service.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { LinksEditComponent } from './links/links-edit.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [VmsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

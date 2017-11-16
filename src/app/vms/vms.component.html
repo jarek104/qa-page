@@ -1,4 +1,28 @@
 <p>
-  vms works!
+    vms works!
 </p>
-<a routerLink="/vmsedit" routerLinkActive="active" class="navlink">Edit VMs</a>
+<div class='table-responsive'>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Current User</th>
+                <th>OS</th>
+                <th>.NET Version</th>
+                <th>Local Build</th>
+                <th>Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let winwm of winwms'>
+                <td>{{winwm.wvmName}}</td>
+                <td>{{winwm.wvmCurrentUser}}</td>
+                <td>{{winwm.wvmOS}}</td>
+                <td>{{winwm.wvmDotNet}}</td>
+                <td>{{winwm.wvmBuildInstalled}}</td>
+                <td>{{winwm.wvmComment}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<a routerLink="/vmsedit" class="navlink">Edit VMs</a>
