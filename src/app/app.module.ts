@@ -8,6 +8,8 @@ import { LinksComponent } from './links/links.component';
 import { VmsEditComponent } from './vms/vms-edit.component';
 import { LinksEditComponent } from './links/links-edit.component';
 import { VmsService } from './services/vms-service.service';
+import { BrowsersComponent } from './browsers/browsers.component';
+import { BrowsersEditComponent } from './browsers/browsers-edit.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { VmsService } from './services/vms-service.service';
     VmsComponent,
     LinksComponent,
     VmsEditComponent,
-    LinksEditComponent
+    LinksEditComponent,
+    BrowsersComponent,
+    BrowsersEditComponent
   ],
   imports: [
     BrowserModule,

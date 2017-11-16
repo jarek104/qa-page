@@ -20,7 +20,7 @@ export class VmsComponent implements OnInit {
     //   vms => { this.winwms = vms; },
     //   error => this.errorMessage = <any>error
     this.getWInWms();
-    
+
   }
   getWInWms(): void {
     this._wmsService.getWinWms()

@@ -19,6 +19,11 @@ a.active {
 */
 
 .nav-link {
-    font-size: 22px !important;
-    margin: 10px;
+    font-size: 22px;
+    margin: 2px;
+    margin-right: 20px;
+}
+
+.glyphicon.glyphicon-globe {
+    font-size: 40px;
 }
