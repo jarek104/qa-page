@@ -20,7 +20,6 @@ export class VmsComponent implements OnInit {
   wvmFirestoreCollection: AngularFirestoreCollection<Winvm>;
   wvmFirestoreDocument: AngularFirestoreDocument<Winvm>;
   wvms: any;
-  wVmId: string;
   winVmToEdit: Observable<Winvm>;
   newWinVm = new Winvm('', '', '', '', '', '', '');
 
@@ -28,7 +27,6 @@ export class VmsComponent implements OnInit {
   mvmFirestoreCollection: AngularFirestoreCollection<Macvm>;
   mvmFirestoreDocument: AngularFirestoreDocument<Macvm>;
   mvms: any;
-  mVmId: string;
   macVmToEdit: Observable<Macvm>;
   newMacVm = new Macvm('', '', '', '', '', '', '', '', '');
 
@@ -57,16 +55,13 @@ export class VmsComponent implements OnInit {
   assignWinVmToEdit(vmID) {
     this.wvmFirestoreDocument = this.afs.doc('WinWms/' + vmID);
     this.winVmToEdit = this.wvmFirestoreDocument.valueChanges();
-    this.wVmId = vmID;
   }
   assignMacVmToEdit(vmID) {
     this.mvmFirestoreDocument = this.afs.doc('MacVms/' + vmID);
     this.macVmToEdit = this.mvmFirestoreDocument.valueChanges();
-    this.mVmId = vmID;
   }
   updateWinVm(wuserName, wbuild, wcomments) {
-    this.afs
-      .doc('WinWms/' + this.wVmId)
+    this.wvmFirestoreDocument
       .update({
         wvmCurrentUser: wuserName,
         wvmBuildInstalled: wbuild,
@@ -75,8 +70,7 @@ export class VmsComponent implements OnInit {
       console.log(wuserName, wbuild, wcomments);
   }
   updateMacVm(muserName, mcomments) {
-    this.afs
-      .doc('MacVms/' + this.mVmId)
+    this.mvmFirestoreDocument
       .update({
         mvmCurrentUser: muserName,
         mvmComment: mcomments
@@ -108,9 +102,9 @@ export class VmsComponent implements OnInit {
     this.afs.collection('MacVms').add(data);
   }
   deleteWinVm() {
-    this.afs.doc('WinWms/' + this.wVmId).delete();
+    this.wvmFirestoreDocument.delete();
   }
   deleteMacVm() {
-    this.afs.doc('MacVms/' + this.mVmId).delete();
+    this.mvmFirestoreDocument.delete();
   }
 }
