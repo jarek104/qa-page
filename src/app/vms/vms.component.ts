@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Winvm } from '../data models/winvm';
-import { Imacvm } from '../data models/imacvm';
-import { VmsService } from '../services/vms-service';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Macvm } from '../data models/macvm';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument
+} from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
 
 @Component({
   selector: 'qa-vms',
@@ -14,54 +16,100 @@ import 'rxjs/add/operator/map';
 })
 export class VmsComponent implements OnInit {
 
-  selectedWinVm = new Winvm('', '', '', '', '', '', '');
-  selectedMacVm: Imacvm;
-  macvms: Imacvm[] = [];
-  winvms: Winvm[];
-  errorMessage: string;
-  submitted = false;
-  wvmCollection: AngularFirestoreCollection<Winvm>;
-  // wvms: Observable<Winvm[]>;
+  // Windows members
+  wvmFirestoreCollection: AngularFirestoreCollection<Winvm>;
+  wvmFirestoreDocument: AngularFirestoreDocument<Winvm>;
   wvms: any;
-  wvmDoc: AngularFirestoreDocument<Winvm>;
+  wVmId: string;
   winVmToEdit: Observable<Winvm>;
+  newWinVm = new Winvm('', '', '', '', '', '', '');
 
-  constructor(private _vmsService: VmsService, private afs: AngularFirestore) { }
+  // Mac members
+  mvmFirestoreCollection: AngularFirestoreCollection<Macvm>;
+  mvmFirestoreDocument: AngularFirestoreDocument<Macvm>;
+  mvms: any;
+  mVmId: string;
+  macVmToEdit: Observable<Macvm>;
+  newMacVm = new Macvm('', '', '', '', '', '', '', '', '');
+
+  constructor( private afs: AngularFirestore) {}
 
   ngOnInit(): void {
-
-    this.wvmCollection = this.afs.collection('WinWms');
-    // this.wvms = this.wvmCollection.valueChanges();
-    this.wvms = this.wvmCollection.snapshotChanges().map(actions => {
+    this.wvmFirestoreCollection = this.afs.collection('WinWms', ref => ref.orderBy('wvmOS', 'asc'));
+    this.wvms = this.wvmFirestoreCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Winvm;
         const id = a.payload.doc.id;
         return { id, data };
       });
     });
+
+    this.mvmFirestoreCollection = this.afs.collection('MacVms', ref => ref.orderBy('mvmIP', 'asc'));
+    this.mvms = this.mvmFirestoreCollection.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Macvm;
+        const id = a.payload.doc.id;
+        return { id, data };
+      });
+    });
   }
 
-  onWinVmSelect(winvm: Winvm): void {
-    this.selectedWinVm = winvm;
+  assignWinVmToEdit(vmID) {
+    this.wvmFirestoreDocument = this.afs.doc('WinWms/' + vmID);
+    this.winVmToEdit = this.wvmFirestoreDocument.valueChanges();
+    this.wVmId = vmID;
   }
-  getWinVm(vmID) {
-    this.wvmDoc = this.afs.doc('WinWms/' + vmID);
-    this.winVmToEdit = this.wvmDoc.valueChanges();
+  assignMacVmToEdit(vmID) {
+    this.mvmFirestoreDocument = this.afs.doc('MacVms/' + vmID);
+    this.macVmToEdit = this.mvmFirestoreDocument.valueChanges();
+    this.mVmId = vmID;
   }
-  updateVm(vmID) {
-    this.afs.doc('WinWms/' + vmID).update({'wvmCurrentUser': '"Jareczek"' });
+  updateWinVm(userName, build, comments) {
+    this.afs
+      .doc('WinWms/' + this.wVmId)
+      .update({
+        wvmCurrentUser: userName,
+        wvmBuild: build,
+        wvmComment: comments
+      });
   }
-  // tslint:disable-next-line:no-trailing-whitespace
-  
-  onSubmit() {
-    this.submitted = true;
+  updateMacVm(userName, comments) {
+    this.afs
+      .doc('MacVms/' + this.mVmId)
+      .update({
+        mvmCurrentUser: userName,
+        mvmComment: comments
+      });
   }
-  getWindowVms(): void {
-    this._vmsService.getWindowVms()
-      .subscribe(vms => this.winvms = vms);
+
+  addWinVm() {
+    const data = {
+      wvmName: this.newWinVm.wvmName,
+      wvmCurrentUser: this.newWinVm.wvmCurrentUser,
+      wvmOS: this.newWinVm.wvmOS,
+      wvmDotNet: this.newWinVm.wvmDotNet,
+      wvmBuildInstalled: this.newWinVm.wvmBuildInstalled,
+      wvmComment: this.newWinVm.wvmComment
+    };
+    this.afs.collection('WinWms').add(data);
   }
-  getWinVms(): void {
-    this._vmsService.getWinVms()
-      .subscribe(vms => this.winvms = vms);
+  addMacVm() {
+    const data = {
+      mvmName: this.newMacVm.mvmName,
+      mvmCurrentUser: this.newMacVm.mvmCurrentUser,
+      mvmIP: this.newMacVm.mvmIP,
+      mvmOS: this.newMacVm.mvmOS,
+      mvmLocalSafari: this.newMacVm.mvmLocalSafari,
+      mvmSafari1: this.newMacVm.mvmSafari1,
+      mvmSafari2: this.newMacVm.mvmSafari2,
+      mvmComment: this.newMacVm.mvmComment
+    };
+    this.afs.collection('MacVms').add(data);
+  }
+  deleteWinVm() {
+    this.afs.doc('WinWms/' + this.wVmId).delete();
+  }
+  deleteMacVm() {
+    this.afs.doc('MacVms/' + this.mVmId).delete();
   }
 }

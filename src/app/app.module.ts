@@ -5,14 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VmsComponent } from './vms/vms.component';
 import { LinksComponent } from './links/links.component';
-import { VmsEditComponent } from './vms/vms-edit.component';
-import { LinksEditComponent } from './links/links-edit.component';
-import { VmsService } from './services/vms-service';
 import { BrowsersComponent } from './browsers/browsers.component';
-import { BrowsersEditComponent } from './browsers/browsers-edit.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { VmsProviderService } from './services/vms-provider.service';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDB9ZpAnBy6rwA7-7VpvqxhBnV06qGaqx0',
@@ -28,10 +25,7 @@ const firebaseConfig = {
     AppComponent,
     VmsComponent,
     LinksComponent,
-    VmsEditComponent,
-    LinksEditComponent,
-    BrowsersComponent,
-    BrowsersEditComponent
+    BrowsersComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +34,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],
-  providers: [VmsService],
+  providers: [VmsProviderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
