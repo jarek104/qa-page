@@ -1,6 +1,6 @@
 export class Winvm {
   constructor(
-    public wvmID: number,
+    public wvmID: string,
     public wvmName: string,
     public wvmCurrentUser: string,
     public wvmOS: string,

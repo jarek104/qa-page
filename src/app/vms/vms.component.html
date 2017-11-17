@@ -1,69 +1,68 @@
 <h1 class="display-5 text-primary">Windows WMs</h1>
 <div class='table-responsive'>
-  <table class="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Current User</th>
-        <th>OS</th>
-        <th>.NET Version</th>
-        <th>Local Build</th>
-        <th>Comments</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor='let winvm of winvms' class="table-row clickable vmInUse" [class.vmInUse]="winvm.wvmCurrentUser == '' " data-target="#VmCheckOutModal" data-toggle="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" (click)="onWinVmSelect(winvm)">
-        <td>{{winvm.wvmName}} </td>
-        <td>{{winvm.wvmCurrentUser}}</td>
-        <td>{{winvm.wvmOS}}</td>
-        <td>{{winvm.wvmDotNet}}</td>
-        <td>{{winvm.wvmBuildInstalled}}</td>
-        <td>{{winvm.wvmComment}}</td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Current User</th>
+                <th>OS</th>
+                <th>.NET Version</th>
+                <th>Local Build</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let wvm of wvms | async" class="table-row clickable vmInUse" [class.vmInUse]="wvm.wvmCurrentUser == '' " data-target="#VmCheckOutModal" data-toggle="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" (click)="getWinVm(wvm.id)">
+                <td>{{wvm.data.wvmName}} </td>
+                <td>{{wvm.data.wvmCurrentUser}}</td>
+                <td>{{wvm.data.wvmOS}}</td>
+                <td>{{wvm.data.wvmDotNet}}</td>
+                <td>{{wvm.data.wvmBuildInstalled}}</td>
+                <td>{{wvm.data.wvmComment}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <div class="container">
-  <button routerLink="/vmsedit" class="btn btn-lg btn-primary pull-right">Edit VMs</button>
+    <button routerLink="/vmsedit" class="btn btn-lg btn-primary pull-right">Edit VMs</button>
 </div>
 <div class="container">
 
-  <!-- Modal -->
-  <div class="modal fade" id="VmCheckOutModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <!-- Modal -->
+    <div class="modal fade" id="VmCheckOutModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+                        <fieldset>
+                            <legend>VM Checkout form</legend>
+                            <div class="form-group">
+                                <label for="userName">Current User</label>
+                                <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]='selectedWinVm.wvmCurrentUser' required placeholder="{{ (winVmToEdit | async)?.wvmCurrentUser}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="onbaseBuild">Local Build</label>
+                                <input type="text" class="form-control" id="onbaseBuild" name="onbaseBuild" [(ngModel)]='selectedWinVm.wvmBuildInstalled'>
+                            </div>
+                            <div class="form-group">
+                                <label for="userComments">Comments</label>
+                                <input type="text" class="form-control" id="userComments" name="userComments" [(ngModel)]='selectedWinVm.wvmComment'>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)="updateVm(winVmToEdit.id)" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
-              <fieldset>
-                  <legend>VM Checkout form</legend>
-                  <div class="form-group">
-                    <label for="userName">Current User</label>
-                    <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]='selectedWinVm.wvmCurrentUser' required>
-                  </div>
-                  <div class="form-group">
-                    <label for="onbaseBuild">Local Build</label>
-                    <input type="text" class="form-control" id="onbaseBuild" name="onbaseBuild" [(ngModel)]='selectedWinVm.wvmBuildInstalled'>
-                  </div>
-                  <div class="form-group">
-                    <label for="userComments">Comments</label>
-                    <input type="text" class="form-control" id="userComments" name="userComments" [(ngModel)]='selectedWinVm.wvmComment'>
-                  </div>
-                </fieldset>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
-

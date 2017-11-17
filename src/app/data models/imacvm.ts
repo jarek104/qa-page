@@ -7,7 +7,6 @@ export interface Imacvm {
     mvmSafari1: string;
     mvmSafari2: string;
     mvmComment: string;
-    mvmLauncher: string;
     // This should have 'Copy URL' button
 }
 

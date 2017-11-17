@@ -1,7 +1,7 @@
 import { Winvm } from './winvm';
 
 export const WINVMS: Winvm[] = [{
-    'wvmID': 1,
+    'wvmID': '1',
     'wvmName': 'QAV-000697',
     'wvmCurrentUser': 'Jerry',
     'wvmOS': 'Windows 10',
@@ -10,7 +10,7 @@ export const WINVMS: Winvm[] = [{
     'wvmComment': 'Automation'
 },
 {
-    'wvmID': 2,
+    'wvmID': '2',
     'wvmName': 'QAV-000234',
     'wvmCurrentUser': 'Bryce',
     'wvmOS': 'Windows Server 2008',
@@ -19,7 +19,7 @@ export const WINVMS: Winvm[] = [{
     'wvmComment': 'RFA'
 },
 {
-    'wvmID': 3,
+    'wvmID': '3',
     'wvmName': 'QAV-005435',
     'wvmCurrentUser': '',
     'wvmOS': 'Windows Server 2012',
@@ -28,7 +28,7 @@ export const WINVMS: Winvm[] = [{
     'wvmComment': 'Testing'
 },
 {
-    'wvmID': 4,
+    'wvmID': '4',
     'wvmName': 'QAV-000697',
     'wvmCurrentUser': '',
     'wvmOS': 'Windows 10',
@@ -37,7 +37,7 @@ export const WINVMS: Winvm[] = [{
     'wvmComment': 'Automation'
 },
 {
-    'wvmID': 5,
+    'wvmID': '5',
     'wvmName': 'QAV-000234',
     'wvmCurrentUser': 'Dwayne',
     'wvmOS': 'Windows Server 2016',
@@ -46,7 +46,7 @@ export const WINVMS: Winvm[] = [{
     'wvmComment': 'RFA'
 },
 {
-    'wvmID': 6,
+    'wvmID': '6',
     'wvmName': 'QAV-005435',
     'wvmCurrentUser': '',
     'wvmOS': 'Windows Server 2008',
