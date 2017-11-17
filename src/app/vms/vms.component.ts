@@ -64,21 +64,22 @@ export class VmsComponent implements OnInit {
     this.macVmToEdit = this.mvmFirestoreDocument.valueChanges();
     this.mVmId = vmID;
   }
-  updateWinVm(userName, build, comments) {
+  updateWinVm(wuserName, wbuild, wcomments) {
     this.afs
       .doc('WinWms/' + this.wVmId)
       .update({
-        wvmCurrentUser: userName,
-        wvmBuild: build,
-        wvmComment: comments
+        wvmCurrentUser: wuserName,
+        wvmBuildInstalled: wbuild,
+        wvmComment: wcomments
       });
+      console.log(wuserName, wbuild, wcomments);
   }
-  updateMacVm(userName, comments) {
+  updateMacVm(muserName, mcomments) {
     this.afs
       .doc('MacVms/' + this.mVmId)
       .update({
-        mvmCurrentUser: userName,
-        mvmComment: comments
+        mvmCurrentUser: muserName,
+        mvmComment: mcomments
       });
   }
 
