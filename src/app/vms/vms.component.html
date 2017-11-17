@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let wvm of wvms | async" class="table-row clickable vmInUse" [class.vmInUse]="wvm.wvmCurrentUser == '' " data-target="#VmCheckOutModal" data-toggle="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" (click)="getWinVm(wvm.id)">
+            <tr *ngFor="let wvm of winVmsPulledFromFirestore | async" class="table-row clickable vmInUse" [class.vmInUse]="wvm.wvmCurrentUser == '' " data-target="#VmCheckOutModal" data-toggle="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false" (click)="getWinVmsFromFirestore(wvm.id)">
                 <td>{{wvm.data.wvmName}} </td>
                 <td>{{wvm.data.wvmCurrentUser}}</td>
                 <td>{{wvm.data.wvmOS}}</td>
@@ -41,26 +41,26 @@
           </button>
                 </div>
                 <div class="modal-body">
-                    <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+                    <form #checkoutForm="ngForm" [formGroup]="winVmForm" (ngSubmit)="onSubmit()">
                         <fieldset>
                             <legend>VM Checkout form</legend>
                             <div class="form-group">
                                 <label for="userName">Current User</label>
-                                <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]='selectedWinVm.wvmCurrentUser' required placeholder="{{ (winVmToEdit | async)?.wvmCurrentUser}}">
+                                <input type="text" class="form-control" formControlName="wvmCurrentUser" id="userName" name="userName" required>
                             </div>
                             <div class="form-group">
                                 <label for="onbaseBuild">Local Build</label>
-                                <input type="text" class="form-control" id="onbaseBuild" name="onbaseBuild" [(ngModel)]='selectedWinVm.wvmBuildInstalled'>
+                                <input type="text" class="form-control" id="onbaseBuild" name="onbaseBuild" >
                             </div>
                             <div class="form-group">
                                 <label for="userComments">Comments</label>
-                                <input type="text" class="form-control" id="userComments" name="userComments" [(ngModel)]='selectedWinVm.wvmComment'>
+                                <input type="text" class="form-control" id="userComments" name="userComments">
                             </div>
                         </fieldset>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" (click)="updateVm(winVmToEdit.id)" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>

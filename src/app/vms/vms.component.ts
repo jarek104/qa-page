@@ -5,6 +5,8 @@ import { VmsService } from '../services/vms-service';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+
 
 
 @Component({
@@ -13,26 +15,35 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./vms.component.css']
 })
 export class VmsComponent implements OnInit {
+  wvmFirestoreCollection: AngularFirestoreCollection<Winvm>;
+  wvmFirestoreDocument: AngularFirestoreDocument<Winvm>;
+  winVmForm: FormGroup;
 
-  selectedWinVm = new Winvm('', '', '', '', '', '', '');
-  selectedMacVm: Imacvm;
-  macvms: Imacvm[] = [];
-  winvms: Winvm[];
-  errorMessage: string;
-  submitted = false;
-  wvmCollection: AngularFirestoreCollection<Winvm>;
-  // wvms: Observable<Winvm[]>;
-  wvms: any;
-  wvmDoc: AngularFirestoreDocument<Winvm>;
-  winVmToEdit: Observable<Winvm>;
 
-  constructor(private _vmsService: VmsService, private afs: AngularFirestore) { }
+  winVmsPulledFromFirestore: any;
 
+  winVmSelected: Winvm;
+  winVmUpdated: Winvm;
+
+  constructor(private _vmsService: VmsService, private afs: AngularFirestore, private fb: FormBuilder) {
+    this.createForm();
+  }
+  createForm() {
+    this.winVmForm = this.fb.group({
+      wvmID: '',
+      wvmName: '',
+      wvmCurrentUser: '',
+      wvmOS: '',
+      wvmDotNet: '',
+      wvmBuildInstalled: '',
+      wvmComment: '',
+    });
+  }
   ngOnInit(): void {
 
-    this.wvmCollection = this.afs.collection('WinWms');
-    // this.wvms = this.wvmCollection.valueChanges();
-    this.wvms = this.wvmCollection.snapshotChanges().map(actions => {
+    this.wvmFirestoreCollection = this.afs.collection('WinWms');
+
+    this.winVmsPulledFromFirestore = this.wvmFirestoreCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Winvm;
         const id = a.payload.doc.id;
@@ -41,27 +52,27 @@ export class VmsComponent implements OnInit {
     });
   }
 
-  onWinVmSelect(winvm: Winvm): void {
-    this.selectedWinVm = winvm;
-  }
-  getWinVm(vmID) {
-    this.wvmDoc = this.afs.doc('WinWms/' + vmID);
-    this.winVmToEdit = this.wvmDoc.valueChanges();
-  }
-  updateVm(vmID) {
-    this.afs.doc('WinWms/' + vmID).update({'wvmCurrentUser': '"Jareczek"' });
-  }
-  // tslint:disable-next-line:no-trailing-whitespace
-  
   onSubmit() {
-    this.submitted = true;
+    this.winVmSelected = this.prepareSaveHero();
   }
-  getWindowVms(): void {
-    this._vmsService.getWindowVms()
-      .subscribe(vms => this.winvms = vms);
+
+  prepareSaveHero(): Winvm {
+    const formModel = this.winVmForm.value;
+    const saveWinVm: Winvm = {
+      wvmID: this.winVmSelected.wvmID,
+      wvmName: formModel.wvmName,
+      wvmOS: formModel.WvmOS,
+      wvmDotNet: formModel.wvmDotNet,
+      wvmCurrentUser: formModel.wvmCurrentUser as string,
+      wvmBuildInstalled: formModel.wvmBuildInstalled as string,
+      wvmComment: formModel.wvmComment as string
+    };
+    return saveWinVm;
   }
-  getWinVms(): void {
-    this._vmsService.getWinVms()
-      .subscribe(vms => this.winvms = vms);
+
+  // When user clicks on a row a VM is assigned to winVmSelected
+  getWinVmsFromFirestore(vmID) {
+    this.wvmFirestoreDocument = this.afs.doc('WinWms/' + vmID);
+    this.winVmSelected = this.wvmFirestoreDocument.valueChanges();
   }
 }

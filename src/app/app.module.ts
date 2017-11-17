@@ -10,7 +10,7 @@ import { LinksEditComponent } from './links/links-edit.component';
 import { VmsService } from './services/vms-service';
 import { BrowsersComponent } from './browsers/browsers.component';
 import { BrowsersEditComponent } from './browsers/browsers-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
@@ -31,12 +31,13 @@ const firebaseConfig = {
     VmsEditComponent,
     LinksEditComponent,
     BrowsersComponent,
-    BrowsersEditComponent
+    BrowsersEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],
