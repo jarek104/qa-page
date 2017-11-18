@@ -17,6 +17,7 @@ a.active {
 }
 
 */
+
 .nav-link {
     font-size: 22px;
     margin: 2px;
@@ -26,35 +27,48 @@ a.active {
 .glyphicon.glyphicon-globe {
     font-size: 40px;
 }
-html
-{
+
+html {
     font-size: 100%;
 }
-.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
+
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
 }
 
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
 }
+
 tr:hover {
-  cursor: pointer;
-  background: #475664 !important;
+    cursor: pointer;
+    background: #475664 !important;
 }
+
 .modal {
-  margin-top:100px;
+    margin-top: 50px;
 }
+
 .vmInUse {
-   background: #4b637a !important;
-   color: #d1d1d1;
+    background: #4b637a !important;
+    color: #d1d1d1;
 }
+
 thead {
-  background: #4f5d6b !important;
+    background: #4f5d6b !important;
 }
-th, td {
-  border: 1px solid #4E5D6C !important;
+
+th,
+td {
+    border: 1px solid #4E5D6C !important;
 }
+
 .move-left {
-  float: left !important;
+    float: left !important;
 }
+
+
 /* f1dede 384858 normal row: 2d3e4f*/

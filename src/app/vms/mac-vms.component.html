@@ -1,0 +1,141 @@
+<!-- MAC Vms table -->
+<h1 class="display-5 text-primary">Mac VMs</h1>
+<div class='table-responsive'>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Current User</th>
+                <th>IP Address</th>
+                <th>OS</th>
+                <th>Local Safari</th>
+                <th>VM 1 Safari</th>
+                <th>VM 2 Safari</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mvm of mvms | async" class="table-row clickable vmInUse" [class.vmInUse]="mvm.data.mvmCurrentUser != '' " data-target="#MacVmCheckOutModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" (click)="assignMacVmToEdit(mvm.id)">
+                <td>{{mvm.data.mvmName}} </td>
+                <td>{{mvm.data.mvmCurrentUser}}</td>
+                <td>{{mvm.data.mvmIP}}</td>
+                <td>{{mvm.data.mvmOS}}</td>
+                <td>{{mvm.data.mvmLocalSafari}}</td>
+                <td>{{mvm.data.mvmSafari1}}</td>
+                <td>{{mvm.data.mvmSafari2}}</td>
+                <td>{{mvm.data.mvmComment}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <button class="btn btn-info pull-right" data-target="#MacVmAddModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add new VM</button>
+</div>
+<!-- Edit/Checkout Mac VM Modal -->
+<div class="modal modal-fade" id="MacVmCheckOutModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">VM Checkout form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form #vmCheckoutForm="ngForm">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="userName">Current User</label>
+                            <input type="text" class="form-control" #muserName name="userName" value="{{ (macVmToEdit | async)?.mvmCurrentUser}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="userComments">Comments</label>
+                            <input type="text" class="form-control" #muserComments name="userComments" value="{{ (macVmToEdit | async)?.mvmComment}}">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-auto" data-target="#MacVmConfirmDeleteModal" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Delete this VM</button>
+                <button type="button" (click)="updateMacVm(muserName.value, muserComments.value)" class="btn btn-success" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirm Delete Mac VM Modal-->
+<div class="modal modal-fade" id="MacVmConfirmDeleteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete VM</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this VM?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deleteMacVm()" data-target="#MacVmCheckOutModal" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add New Mac VM Modal-->
+<div class="modal modal-fade" id="MacVmAddModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New VM</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form #vmAddForm="ngForm">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="userName">VM Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="newMacVm.mvmName" name="vmName">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">User</label>
+                            <input type="text" class="form-control" [(ngModel)]="newMacVm.mvmCurrentUser" name="userName">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">IP Address</label>
+                            <input type="text" class="form-control" [(ngModel)]="newMacVm.mvmIP" name="os">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">OSX</label>
+                            <input type="text" class="form-control" [(ngModel)]="newMacVm.mvmOS" name="os">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">Local Safari</label>
+                            <input type="text" class="form-control" [(ngModel)]="newMacVm.mvmLocalSafari" name="dotNet">
+                        </div>
+                        <div class="form-group">
+                            <label for="onbaseBuild">Safari 1</label>
+                            <input type="text" class="form-control" [(ngModel)]="newMacVm.mvmSafari1" name="onbaseBuild">
+                        </div>
+                        <div class="form-group">
+                            <label for="onbaseBuild">Safari 2</label>
+                            <input type="text" class="form-control" [(ngModel)]="newMacVm.mvmSafari2" name="onbaseBuild">
+                        </div>
+                        <div class="form-group">
+                            <label for="userComments">Comments</label>
+                            <input type="text" class="form-control" [(ngModel)]="newMacVm.mvmComment" name="userComments">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="addMacVm()" class="btn btn-success" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

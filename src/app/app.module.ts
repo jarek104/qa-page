@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { VmsProviderService } from './services/vms-provider.service';
+import { MacVmsComponent } from './vms/mac-vms.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDB9ZpAnBy6rwA7-7VpvqxhBnV06qGaqx0',
@@ -25,7 +26,8 @@ const firebaseConfig = {
     AppComponent,
     VmsComponent,
     LinksComponent,
-    BrowsersComponent
+    BrowsersComponent,
+    MacVmsComponent
   ],
   imports: [
     BrowserModule,
