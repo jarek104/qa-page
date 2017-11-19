@@ -81,12 +81,12 @@ td {
     color: #DF691A !important;
 }
 
-.card {
-    /* margin: 2px !important; */
+.shadow {
+    box-shadow: 1px 6px 12px 0 rgba(0, 0, 0, 0.4);
 }
 
-.shadow {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.text-shadow {
+    text-shadow: 2px 4px 8px #000000;
 }
 
 .fill {
@@ -97,6 +97,14 @@ td {
 .wrap {
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.hover:hover {
+    transform: scale3D(1.006, 1.006, 1) !important;
+}
+
+.hover {
+    transition: transform 0.08s ease-in-out;
 }
 
 

@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12 p-1" *ngFor="let l of linksList | async">
-            <div class="card shadow fill">
+            <div class="card shadow fill hover">
                 <legend (click)="assignLinkEdit(l.id)" class="clickableLegend wrap p-2 pl-3" data-target="#EditLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">{{ l.data.title }}</legend>
 
-                <div class="card-body ">
+                <div class="card-body">
                     <p>{{ l.data.description }}</p>
                 </div>
                 <div>
