@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-4 p-1" *ngFor="let l of linksList | async">
+        <div class="col-lg-4 col-md-6 col-sm-12 p-1" *ngFor="let l of linksList | async">
             <div class="card shadow fill">
-                <legend (click)="assignLinkEdit(l.id)" class="clickableLegend p-2" data-target="#EditLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">{{ l.data.title }}</legend>
+                <legend (click)="assignLinkEdit(l.id)" class="clickableLegend wrap p-2 pl-3" data-target="#EditLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">{{ l.data.title }}</legend>
 
                 <div class="card-body ">
                     <p>{{ l.data.description }}</p>
                 </div>
                 <div>
-                    <a [href]='l.data.address' class="btn btn-info btn-block">{{ l.data.title }}</a>
+                    <a [href]='l.data.address' target="_blank" class="btn btn-info btn-block wrap">{{ l.data.address }}</a>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
 </div>
 <br>
 <div class="container">
-    <button class="btn btn-info pull-right" data-target="#AddLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add New Link</button>
+    <button class="btn btn-info pull-right shadow" data-target="#AddLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add New Link</button>
 </div>
 <!-- Add New Windows VM Modal-->
 <div class="modal modal-fade" id="AddLinkModal">
@@ -71,23 +71,23 @@
                 <form #vmCheckoutForm="ngForm">
                     <fieldset>
                         <div class="form-group">
-                            <label for="userName">Current User</label>
-                            <input type="text" class="form-control" #wuserName name="userName" value="{{ (winVmToEdit | async)?.wvmCurrentUser}}">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" #title name="title" value="{{ (linkToEdit | async)?.title}}">
                         </div>
                         <div class="form-group">
-                            <label for="onbaseBuild">Local Build</label>
-                            <input type="text" class="form-control" #wonbaseBuild name="onbaseBuild" value="{{ (winVmToEdit | async)?.wvmBuildInstalled}}">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" #description name="descripion" value="{{ (linkToEdit | async)?.description}}">
                         </div>
                         <div class="form-group">
-                            <label for="userComments">Comments</label>
-                            <input type="text" class="form-control" #wuserComments name="userComments" value="{{ (winVmToEdit | async)?.wvmComment}}">
+                            <label for="url">URL</label>
+                            <input type="text" class="form-control" #url name="url" value="{{ (linkToEdit | async)?.address}}">
                         </div>
                     </fieldset>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger mr-auto" data-target="#LinkConfirmDeleteModal" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Delete this VM</button>
-                <button type="button" (click)="updateLink(wuserName.value, wonbaseBuild.value, wuserComments.value)" class="btn btn-success" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-danger mr-auto" data-target="#LinkConfirmDeleteModal" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Delete</button>
+                <button type="button" (click)="updateLink(title.value, description.value, url.value)" class="btn btn-success" data-dismiss="modal">Save</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

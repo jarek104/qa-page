@@ -37,17 +37,17 @@ export class LinksComponent implements OnInit {
   assignLinkEdit(linkID) {
     this.linksFirestoreDocument = this.afs.doc('Links/' + linkID);
     this.linkToEdit = this.linksFirestoreDocument.valueChanges();
-    console.log(this.linksFirestoreDocument);
   }
 
-  updateLink(t, d, u, c) {
+  updateLink(t, d, u) {
+    console.log(this.linksFirestoreDocument);
+    console.log(t, d, u);
     this.linksFirestoreDocument
       .update({
-        linkTitle: t,
-        linkDescription: d,
-        linkURL: u,
-        linkColor: c,
-        linkClickCounter: 0
+        title: t,
+        description: d,
+        address: u,
+        clickCounter: 0
       });
   }
 

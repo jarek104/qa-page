@@ -94,5 +94,10 @@ td {
     height: 100%;
 }
 
+.wrap {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 
 /* f1dede 384858 normal row: 2d3e4f*/
