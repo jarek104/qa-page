@@ -6,7 +6,7 @@ import { BrowsersComponent } from './browsers/browsers.component';
 
 const routes: Routes = [
   { path: 'vms', component: VmsComponent},
-  { path: 'links', component: LinksComponent},
+  { path: 'cards', component: LinksComponent},
   { path: 'browsers', component: BrowsersComponent},
   { path: '' , redirectTo: '/vms', pathMatch: 'full'},
   { path: '**' , component: VmsComponent}

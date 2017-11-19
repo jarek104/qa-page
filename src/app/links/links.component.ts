@@ -25,7 +25,7 @@ export class LinksComponent implements OnInit {
   constructor( private afs: AngularFirestore ) { }
   // , ref => ref.orderBy('clickCounter', 'asc')
   ngOnInit() {
-    this.linksFirestoreCollection = this.afs.collection('Links');
+    this.linksFirestoreCollection = this.afs.collection('Links', ref => ref.orderBy('title', 'asc'));
     this.linksList = this.linksFirestoreCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Link;
