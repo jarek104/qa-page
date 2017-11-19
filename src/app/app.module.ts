@@ -36,7 +36,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],
-  providers: [VmsProviderService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@ export class Winvm {
     public wvmDotNet: string,
     public wvmBuildInstalled: string,
     public wvmComment: string,
-  ) {}
-    // This should have 'Copy URL' button
+  ) { }
+  // This should have 'Copy URL' button
 }
 

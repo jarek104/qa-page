@@ -1,3 +1,116 @@
-<p>
-    links works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 p-1" *ngFor="let l of linksList | async">
+            <div class="card shadow fill">
+                <legend (click)="assignLinkEdit(l.id)" class="clickableLegend p-2" data-target="#EditLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">{{ l.data.title }}</legend>
+
+                <div class="card-body ">
+                    <p>{{ l.data.description }}</p>
+                </div>
+                <div>
+                    <a [href]='l.data.address' class="btn btn-info btn-block">{{ l.data.title }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <button class="btn btn-info pull-right" data-target="#AddLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add New Link</button>
+</div>
+<!-- Add New Windows VM Modal-->
+<div class="modal modal-fade" id="AddLinkModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #vmAddForm="ngForm">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="userName">Title</label>
+                            <input type="text" class="form-control" [(ngModel)]="newLink.linkTitle" name="vmName">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">Description</label>
+                            <input type="text" class="form-control" [(ngModel)]="newLink.linkDescription" name="userName">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">URL</label>
+                            <input type="text" class="form-control" [(ngModel)]="newLink.linkURL" name="os">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">Color</label>
+                            <input type="text" class="form-control" [(ngModel)]="newLink.linkColor" name="dotNet">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="addLink()" class="btn btn-success" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit/Checkout Link Modal -->
+<div class="modal modal-fade" id="EditLinkModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form #vmCheckoutForm="ngForm">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="userName">Current User</label>
+                            <input type="text" class="form-control" #wuserName name="userName" value="{{ (winVmToEdit | async)?.wvmCurrentUser}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="onbaseBuild">Local Build</label>
+                            <input type="text" class="form-control" #wonbaseBuild name="onbaseBuild" value="{{ (winVmToEdit | async)?.wvmBuildInstalled}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="userComments">Comments</label>
+                            <input type="text" class="form-control" #wuserComments name="userComments" value="{{ (winVmToEdit | async)?.wvmComment}}">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-auto" data-target="#LinkConfirmDeleteModal" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Delete this VM</button>
+                <button type="button" (click)="updateLink(wuserName.value, wonbaseBuild.value, wuserComments.value)" class="btn btn-success" data-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Delete Link-->
+<div class="modal modal-fade" id="LinkConfirmDeleteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this Link?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deleteLink()" data-target="#EditLinkModal" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

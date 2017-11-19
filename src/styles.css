@@ -70,5 +70,29 @@ td {
     float: left !important;
 }
 
+.padd {
+    padding: 5px !important;
+    margin: 1px !important;
+    vertical-align: bottom;
+}
+
+.clickableLegend:hover {
+    cursor: pointer;
+    color: #DF691A !important;
+}
+
+.card {
+    /* margin: 2px !important; */
+}
+
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
 
 /* f1dede 384858 normal row: 2d3e4f*/

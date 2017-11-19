@@ -22,7 +22,7 @@ export class VmsComponent implements OnInit {
   winVmToEdit: Observable<Winvm>;
   newWinVm = new Winvm('', '', '', '', '', '', '');
 
- constructor( private afs: AngularFirestore) {}
+ constructor( private afs: AngularFirestore ) {}
 
   ngOnInit(): void {
     this.wvmFirestoreCollection = this.afs.collection('WinWms', ref => ref.orderBy('wvmOS', 'asc'));
@@ -48,7 +48,7 @@ export class VmsComponent implements OnInit {
         wvmComment: wcomments
       });
   }
-  
+
   addWinVm() {
     const data = {
       wvmName: this.newWinVm.wvmName,
