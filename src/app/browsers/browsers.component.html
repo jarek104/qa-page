@@ -1,3 +1,168 @@
-<p>
-    browsers works!
-</p>
+<!-- Windows Vms table -->
+<h1 class="display-5 text-primary text-shadow">Browser Support</h1>
+<div class='table-responsive shadow'>
+    <table class="table table-hover table-bordered m-0">
+        <thead>
+            <tr>
+                <th>OnBase</th>
+                <th>IE</th>
+                <th>Edge</th>
+                <th>Chrome</th>
+                <th>Firefox</th>
+                <th>Firefox ESR</th>
+                <th>Safari</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let browser of browsersList | async" class="table-row clickable" data-target="#BrowsersEditModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" (click)="assignBrowsersToEdit(browser.id)">
+                <td>{{browser.data.onbaseVersion}} </td>
+                <td>{{browser.data.minIE}}</td>
+                <td>{{browser.data.minEdge}}</td>
+                <td>{{browser.data.minChrome}}</td>
+                <td>{{browser.data.minFF}}</td>
+                <td>{{browser.data.minFFESR}}</td>
+                <td>{{browser.data.minSafari}}</td>
+                <td>{{browser.data.comments}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<div class="container">
+    <button class="btn btn-info pull-right shadow" data-target="#OnbaseVersionAddModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add Onbase Version</button>
+</div>
+
+<!-- Edit/Checkout Windows VM Modal -->
+<div class="modal modal-fade" id="BrowsersEditModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form #browsersForm="ngForm">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="onbaseVersion">Current User</label>
+                            <input type="text" class="form-control" #OnbaseVersion name="onbaseVersion" value="{{ (browsersToEdit | async)?.onbaseVersion}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="minIE">Internet Explorer</label>
+                            <input type="text" class="form-control" #MinIE name="minIE" value="{{ (browsersToEdit | async)?.minIE}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="minEdge">Edge</label>
+                            <input type="text" class="form-control" #MinEdge name="minEdge" value="{{ (browsersToEdit | async)?.minEdge}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="minChrome">Chrome</label>
+                            <input type="text" class="form-control" #MinChrome name="minChrome" value="{{ (browsersToEdit | async)?.minChrome}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="minFF">Firefox</label>
+                            <input type="text" class="form-control" #MinFF name="minFF" value="{{ (browsersToEdit | async)?.minFF}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="minFFESR">Firefox ESR</label>
+                            <input type="text" class="form-control" #MinFFESR name="minFFESR" value="{{ (browsersToEdit | async)?.minFFESR}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="minSafari">Safari</label>
+                            <input type="text" class="form-control" #MinSafari name="minSafari" value="{{ (browsersToEdit | async)?.minSafari}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="comments">Comments</label>
+                            <input type="text" class="form-control" #Comments name="comments" value="{{ (browsersToEdit | async)?.comments}}">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger mr-auto" data-target="#BrowsersConfirmDeleteModal" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Delete</button>
+                <button type="button" (click)="updateBrowsers(OnbaseVersion.value, MinIE.value, MinEdge.value, MinChrome.value, MinFF.value, MinFFESR.value, MinSafari.value, Comments.value)" class="btn btn-success" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Delete Windows VM Modal-->
+<div class="modal modal-fade" id="BrowsersConfirmDeleteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete entry</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this entry?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="deleteBrowsers()" data-target="#BrowsersEditModal" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add New Windows VM Modal-->
+<div class="modal modal-fade" id="OnbaseVersionAddModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Onbase Version</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form #vmAddForm="ngForm">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="userName">OnBase Version</label>
+                            <input type="text" class="form-control" [(ngModel)]="newBrowsers.onbaseVersion" name="onbaseVersion">
+                        </div>
+                        <div class="form-group">
+                            <label for="minIE">Internet Explorer</label>
+                            <input type="text" class="form-control" [(ngModel)]="newBrowsers.minIE" name="minIE">
+                        </div>
+                        <div class="form-group">
+                            <label for="minEdge">Edge</label>
+                            <input type="text" class="form-control" [(ngModel)]="newBrowsers.minEdge" name="minEdge">
+                        </div>
+                        <div class="form-group">
+                            <label for="minChrome">Chrome</label>
+                            <input type="text" class="form-control" [(ngModel)]="newBrowsers.minChrome" name="minChrome">
+                        </div>
+                        <div class="form-group">
+                            <label for="minFF">Firefox</label>
+                            <input type="text" class="form-control" [(ngModel)]="newBrowsers.minFF" name="minFF">
+                        </div>
+                        <div class="form-group">
+                            <label for="minFFESR">Firefox ESR</label>
+                            <input type="text" class="form-control" [(ngModel)]="newBrowsers.minFFESR" name="minFFESR">
+                        </div>
+                        <div class="form-group">
+                            <label for="minSafari">Safari</label>
+                            <input type="text" class="form-control" [(ngModel)]="newBrowsers.minSafari" name="minSafari">
+                        </div>
+                        <div class="form-group">
+                            <label for="comments">Comments</label>
+                            <input type="text" class="form-control" [(ngModel)]="newBrowsers.comments" name="comments">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="addOnbaseVersion()" class="btn btn-success" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

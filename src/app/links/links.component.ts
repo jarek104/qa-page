@@ -39,12 +39,10 @@ export class LinksComponent implements OnInit {
     this.linkToEdit = this.linksFirestoreDocument.valueChanges();
   }
 
-  updateLink(t, d, u) {
-    console.log(this.linksFirestoreDocument);
-    console.log(t, d, u);
+  updateLink(ti, d, u) {
     this.linksFirestoreDocument
       .update({
-        title: t,
+        title: ti,
         description: d,
         address: u,
         clickCounter: 0
@@ -53,10 +51,10 @@ export class LinksComponent implements OnInit {
 
   addLink() {
     const data = {
-      title: this.newLink.linkTitle,
-      description: this.newLink.linkDescription,
-      address: this.newLink.linkURL,
-      color: this.newLink.linkColor,
+      title: this.newLink.title,
+      description: this.newLink.description,
+      address: this.newLink.address,
+      color: this.newLink.color,
       clickCounter: 0
     };
     this.afs.collection('Links').add(data);

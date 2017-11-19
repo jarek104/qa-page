@@ -1,9 +1,9 @@
 export class Link {
     constructor(
-        public linkTitle: string,
-        public linkURL: string,
-        public linkDescription: string,
-        public linkColor: string,
-        public linkClickCounter: number
+        public title: string,
+        public address: string,
+        public description: string,
+        public color: string,
+        public clickCounter: number
     ) { }
 }
