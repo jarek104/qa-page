@@ -11,6 +11,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { VmsProviderService } from './services/vms-provider.service';
 import { MacVmsComponent } from './vms/mac-vms.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDB9ZpAnBy6rwA7-7VpvqxhBnV06qGaqx0',
@@ -34,7 +35,8 @@ const firebaseConfig = {
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
