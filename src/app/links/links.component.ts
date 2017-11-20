@@ -21,6 +21,7 @@ export class LinksComponent implements OnInit {
   linksList: any;
   linkToEdit: Observable<Link>;
   newLink = new Link('', '', '', '', 0);
+  temp: string;
 
   constructor( private afs: AngularFirestore ) { }
   // , ref => ref.orderBy('clickCounter', 'asc')
@@ -63,5 +64,8 @@ export class LinksComponent implements OnInit {
   deleteLink() {
     this.linksFirestoreDocument.delete();
     console.log(this.linksFirestoreDocument);
+  }
+  copied() {
+    console.log('Copied!');
   }
 }
