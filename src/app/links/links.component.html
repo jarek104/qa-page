@@ -8,7 +8,9 @@
                     <p>{{ l.data.description }}</p>
                 </div>
                 <div>
-                    <a [href]='l.data.address' target="_blank" class="btn btn-info btn-block wrap">{{ l.data.address }}</a>
+                    <!-- Check the URL. If it's http use a link, if a network location use a button -->
+                    <a *ngIf='l.data.address.indexOf("http") > -1' [href]='l.data.address' target="_blank" class="btn btn-info wrap btn-block">{{ l.data.address }}</a>
+                    <button *ngIf='l.data.address.indexOf("\\") > -1' target="_blank" class="btn btn-info wrap btn-block">{{ l.data.address }}</button>
                 </div>
             </div>
         </div>
@@ -16,7 +18,7 @@
 </div>
 <br>
 <div class="container">
-    <button class="btn btn-info pull-right shadow hover" data-target="#AddLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add New Card</button>
+    <button class="btn btn-info pull-right shadow hover btn-sm" data-target="#AddLinkModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add New Card</button>
 </div>
 <br>
 <!-- Add New Windows VM Modal-->
@@ -34,15 +36,15 @@
                     <fieldset>
                         <div class="form-group">
                             <label for="userName">Title</label>
-                            <input type="text" class="form-control" [(ngModel)]="newLink.linkTitle" name="vmName">
+                            <input type="text" class="form-control" [(ngModel)]="newLink.title" name="vmName">
                         </div>
                         <div class="form-group">
                             <label for="userName">Description</label>
-                            <input type="text" class="form-control" [(ngModel)]="newLink.linkDescription" name="userName">
+                            <input type="text" class="form-control" [(ngModel)]="newLink.description" name="userName">
                         </div>
                         <div class="form-group">
                             <label for="userName">URL</label>
-                            <input type="text" class="form-control" [(ngModel)]="newLink.linkURL" name="os">
+                            <input type="text" class="form-control" [(ngModel)]="newLink.address" name="os">
                         </div>
                     </fieldset>
                 </form>
