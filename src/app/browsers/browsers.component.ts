@@ -27,7 +27,7 @@ export class BrowsersComponent implements OnInit {
   constructor(private afs: AngularFirestore) { }
 
   ngOnInit(): void {
-    this.browsersFirestoreCollection = this.afs.collection('BrowserSupport', ref => ref.orderBy('onbaseVersion', 'asc'));
+    this.browsersFirestoreCollection = this.afs.collection('BrowserSupport', ref => ref.orderBy('onbaseVersion', 'desc'));
     this.browsersList = this.browsersFirestoreCollection.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Browsers;

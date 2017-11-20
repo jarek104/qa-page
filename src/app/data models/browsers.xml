@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<SupportedBrowsers>
+    <OnBaseVersions>
+        <Version Name="17.0">
+            <Browsers>
+                <Browser Name="Chrome 57+" />
+                <Browser Name="Edge (Limited Support)" />
+                <Browser Name="Internet Explorer 10 (Server 2012 Only)" />
+                <Browser Name="Internet Explorer 11" />
+                <Browser Name="Firefox 52 ESR" />
+                <Browser Name="Firefox 52+ Standard" />
+                <Browser Name="Safari 9.1" />
+                <Browser Name="Safari 10.0" />
+                <Browser Name="Safari 10.1" />
+                <Browser Name="Safari 11.0" />
+            </Browsers>
+        </Version>
+        <Version Name="16.0">
+            <Browsers>
+                <Browser Name="Chrome 49+" />
+                <Browser Name="Edge (Limited Support)" />
+                <Browser Name="Internet Explorer 10 (Server 2012 Only)" />
+                <Browser Name="Internet Explorer 11" />
+                <Browser Name="Firefox 45 ESR" />
+                <Browser Name="Firefox 45 Standard" />
+                <Browser Name="Safari 6.2" />
+                <Browser Name="Safari 7.1" />
+                <Browser Name="Safari 8.0" />
+                <Browser Name="Safari 9.1" />
+                <Browser Name="Safari 10.0" />
+                <Browser Name="Safari 10.1" />
+            </Browsers>
+        </Version>
+        <Version Name="15.0">
+            <Browsers>
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 7)" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Internet Explorer 11" />
+                <Browser Name="Firefox 31 ESR (Windows)" />
+                <Browser Name="Firefox 31 ESR (Mac)" />
+                <Browser Name="Safari 5.1.9+" />
+                <Browser Name="Safari 6.0.4+" />
+                <Browser Name="Safari 6.2" />
+                <Browser Name="Safari 7.1" />
+                <Browser Name="Safari 8.0" />
+            </Browsers>
+        </Version>
+        <Version Name="14.0 SP1">
+            <Browsers>
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 7)" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Internet Explorer 11" />
+                <Browser Name="Firefox 24 ESR (Windows)" />
+                <Browser Name="Firefox 24 ESR (Mac)" />
+                <Browser Name="Firefox 31 ESR (Windows)" />
+                <Browser Name="Firefox 31 ESR (Mac)" />
+                <Browser Name="Safari 5.1.9+" />
+                <Browser Name="Safari 6.0.4+" />
+                <Browser Name="Safari 6.1" />
+                <Browser Name="Safari 7.0" />
+                <Browser Name="Safari 6.2" />
+                <Browser Name="Safari 7.1" />
+                <Browser Name="Safari 8.0" />
+            </Browsers>
+        </Version>
+        <Version Name="14.0">
+            <Browsers>
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 7)" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Internet Explorer 11" />
+                <Browser Name="Firefox 24 ESR (Windows)" />
+                <Browser Name="Firefox 24 ESR (Mac)" />
+                <Browser Name="Firefox 31 ESR (Windows)" />
+                <Browser Name="Firefox 31 ESR (Mac)" />
+                <Browser Name="Safari 5.1.9+" />
+                <Browser Name="Safari 6.0.4+" />
+                <Browser Name="Safari 6.1" />
+                <Browser Name="Safari 7.0" />
+            </Browsers>
+        </Version>
+        <Version Name="13.0.2.239+">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 7)" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Internet Explorer 11" />
+                <Browser Name="Firefox 17 ESR (Windows)" />
+                <Browser Name="Firefox 17 ESR (Mac)" />
+                <Browser Name="Firefox 24 ESR (Windows)" />
+                <Browser Name="Firefox 24 ESR (Mac)" />
+                <Browser Name="Firefox 31 ESR (Windows)" />
+                <Browser Name="Firefox 31 ESR (Mac)" />
+                <Browser Name="Safari 5.1.9+" />
+                <Browser Name="Safari 6.0.4+" />
+                <Browser Name="Safari 6.1" />
+                <Browser Name="Safari 7.0" />
+            </Browsers>
+        </Version>
+        <Version Name="13.0 SP2">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 7)" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Internet Explorer 11" />
+                <Browser Name="Firefox 17 ESR (Windows)" />
+                <Browser Name="Firefox 17 ESR (Mac)" />
+                <Browser Name="Firefox 24 ESR (Windows)" />
+                <Browser Name="Firefox 24 ESR (Mac)" />
+                <Browser Name="Safari 5.1.9+" />
+                <Browser Name="Safari 6.0.4+" />
+            </Browsers>
+        </Version>
+        <Version Name="13.0 SP1">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 7)" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Firefox 17 ESR (Windows)" />
+                <Browser Name="Firefox 17 ESR (Mac)" />
+                <Browser Name="Safari 5.1.9+" />
+                <Browser Name="Safari 6.0.4+" />
+            </Browsers>
+        </Version>
+        <Version Name="13.0">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 7)" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Firefox 17 ESR (Windows)" />
+                <Browser Name="Firefox 17 ESR (Mac)" />
+                <Browser Name="Safari 5.1.9+" />
+                <Browser Name="Safari 6.0.4+" />
+            </Browsers>
+        </Version>
+        <Version Name="12.0 SP3">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 7)" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Firefox 10 ESR (Windows)" />
+                <Browser Name="Firefox 10 ESR (Mac)" />
+            </Browsers>
+        </Version>
+        <Version Name="12.0 SP2">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Internet Explorer 10 (Windows 8)" />
+                <Browser Name="Firefox 10 ESR (Windows)" />
+                <Browser Name="Firefox 10 ESR (Mac)" />
+            </Browsers>
+        </Version>
+        <Version Name="12.0 SP1">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Firefox 10 ESR (Windows)" />
+                <Browser Name="Firefox 10 ESR (Mac)" />
+            </Browsers>
+        </Version>
+        <Version Name="12.0">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Firefox 10 ESR (Windows)" />
+                <Browser Name="Firefox 10 ESR (Mac)" />
+            </Browsers>
+        </Version>
+        <Version Name="11.0 SP3">
+            <Browsers>
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+                <Browser Name="Internet Explorer 9" />
+                <Browser Name="Firefox 3.6 (Windows)" />
+                <Browser Name="Firefox 4.0 (Windows)" />
+                <Browser Name="Firefox 5.0 (Windows)" />
+                <Browser Name="Firefox 10 ESR (Windows)" />
+            </Browsers>
+        </Version>
+        <Version Name="10.0 SP1">
+            <Browsers>
+                <Browser Name="Internet Explorer 6" />
+                <Browser Name="Internet Explorer 7" />
+                <Browser Name="Internet Explorer 8" />
+            </Browsers>
+        </Version>
+    </OnBaseVersions>
+</SupportedBrowsers>
