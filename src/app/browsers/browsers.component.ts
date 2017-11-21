@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import { Link } from '../data models/link';
 import { AngularFireModule } from 'angularfire2';
 import { Browsers } from '../data models/browsers';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'qa-browsers',
@@ -58,7 +59,7 @@ export class BrowsersComponent implements OnInit {
       });
   }
 
-  addOnbaseVersion() {
+  addOnbaseVersion( form: NgForm ) {
     const data = {
       onbaseVersion: this.newBrowsers.onbaseVersion,
       minIE: this.newBrowsers.minIE,

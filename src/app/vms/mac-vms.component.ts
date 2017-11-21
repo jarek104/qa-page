@@ -8,6 +8,7 @@ import {
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'qa-mac-vms',
@@ -45,7 +46,7 @@ export class MacVmsComponent implements OnInit {
         mvmComment: mcomments
       });
   }
-  addMacVm() {
+  addMacVm( form: NgForm ) {
     const data = {
       mvmName: this.newMacVm.mvmName,
       mvmCurrentUser: this.newMacVm.mvmCurrentUser,

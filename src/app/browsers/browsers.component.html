@@ -34,7 +34,7 @@
 </div>
 <br>
 
-<!-- Edit/Checkout Windows VM Modal -->
+<!-- Edit Browsers Modal -->
 <div class="modal modal-fade" id="BrowsersEditModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -91,7 +91,7 @@
     </div>
 </div>
 
-<!-- Confirm Delete Windows VM Modal-->
+<!-- Confirm Delete Browsers Modal-->
 <div class="modal modal-fade" id="BrowsersConfirmDeleteModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -112,7 +112,7 @@
     </div>
 </div>
 
-<!-- Add New Windows VM Modal-->
+<!-- Add Browsers Modal-->
 <div class="modal modal-fade" id="OnbaseVersionAddModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -123,7 +123,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <form #vmAddForm="ngForm">
+                <form #browsersAdd="ngForm">
                     <fieldset>
                         <div class="form-group">
                             <label for="userName">OnBase Version</label>
@@ -161,7 +161,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="addOnbaseVersion()" class="btn btn-success" data-dismiss="modal">Add</button>
+                <button type="button" (click)="addOnbaseVersion(browsersAdd)" class="btn btn-success" data-dismiss="modal">Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

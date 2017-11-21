@@ -8,6 +8,7 @@ import {
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'qa-vms',
@@ -49,7 +50,7 @@ export class VmsComponent implements OnInit {
       });
   }
 
-  addWinVm() {
+  addWinVm( form: NgForm ) {
     const data = {
       wvmName: this.newWinVm.wvmName,
       wvmCurrentUser: this.newWinVm.wvmCurrentUser,

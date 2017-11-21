@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Link } from '../data models/link';
 import { AngularFireModule } from 'angularfire2';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'qa-links',
@@ -24,7 +25,7 @@ export class LinksComponent implements OnInit {
   temp: string;
 
   constructor( private afs: AngularFirestore ) { }
-  // , ref => ref.orderBy('clickCounter', 'asc')
+
   ngOnInit() {
     this.linksFirestoreCollection = this.afs.collection('Links', ref => ref.orderBy('title', 'asc'));
     this.linksList = this.linksFirestoreCollection.snapshotChanges().map(actions => {
@@ -50,7 +51,7 @@ export class LinksComponent implements OnInit {
       });
   }
 
-  addLink() {
+  addLink( form: NgForm ) {
     const data = {
       title: this.newLink.title,
       description: this.newLink.description,

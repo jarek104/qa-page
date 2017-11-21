@@ -25,7 +25,7 @@
       data-keyboard="false">Add New Card</button>
   </div>
   <br>
-  <!-- Add New Windows VM Modal-->
+  <!-- Add Link Modal-->
   <div class="modal modal-fade" id="AddLinkModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -36,7 +36,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #vmAddForm="ngForm">
+          <form #linkAddForm="ngForm">
             <fieldset>
               <div class="form-group">
                 <label for="userName">Title</label>
@@ -54,7 +54,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" (click)="addLink()" class="btn btn-success" data-dismiss="modal">Add</button>
+          <button type="button" (click)="addLink(linkAddForm)" class="btn btn-success" data-dismiss="modal">Add</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>

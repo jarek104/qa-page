@@ -1,0 +1,5 @@
+authentication for WFH
+timestamp for checkout
+"Loading..." message before data comes back
+*ngIf on the tables or the whole container
+
