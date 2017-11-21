@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { VmsComponent } from './vms/vms.component';
 import { LinksComponent } from './links/links.component';
 import { BrowsersComponent } from './browsers/browsers.component';
+import { WorkFromHomeComponent } from './wfh/work-from-home.component';
 
 const routes: Routes = [
   { path: 'vms', component: VmsComponent},
   { path: 'cards', component: LinksComponent},
   { path: 'browsers', component: BrowsersComponent},
+  { path: 'wfh', component: WorkFromHomeComponent },
   { path: '' , redirectTo: '/vms', pathMatch: 'full'},
   { path: '**' , component: VmsComponent}
 ];

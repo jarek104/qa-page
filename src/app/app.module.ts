@@ -12,6 +12,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { VmsProviderService } from './services/vms-provider.service';
 import { MacVmsComponent } from './vms/mac-vms.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { WorkFromHomeComponent } from './wfh/work-from-home.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDB9ZpAnBy6rwA7-7VpvqxhBnV06qGaqx0',
@@ -28,7 +29,8 @@ const firebaseConfig = {
     VmsComponent,
     LinksComponent,
     BrowsersComponent,
-    MacVmsComponent
+    MacVmsComponent,
+    WorkFromHomeComponent
   ],
   imports: [
     BrowserModule,
