@@ -1,4 +1,23 @@
-<div class="jumbotron">
-  <h1 class="display-3">Just kidding!</h1>
-  <p>This isn't working yet. LOLZ</p>
+<div class="container">
+  <div class="row">
+    <div *ngIf="isLoggedIn == false" class="Absolute-Center is-Responsive">
+      <div class="col-sm-12 col-md-10">
+        <form id="loginForm">
+          <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input class="form-control" #user type="text" name='username' placeholder="username"/>
+          </div>
+          <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input class="form-control" #pass type="password" name='password' placeholder="password"/>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-info btn-def btn-block">Login</button>
+            <p class="text-info text-center pt-2 mb-2">or</p>
+            <button type="button" class="btn btn-info btn-def btn-block" (click)="createUser(user.value, pass.value)">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

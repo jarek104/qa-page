@@ -29,7 +29,7 @@
 </div>
 <br>
 <div class="container">
-    <button class="btn btn-info pull-right shadow btn-sm" data-target="#WinVmAddModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add new VM</button>
+    <button class="btn btn-info pull-right shadow btn-sm" id="addWinVM" data-target="#WinVmAddModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Add new VM</button>
 </div>
 <br>
 <!-- Edit/Checkout Windows VM Modal -->
@@ -131,8 +131,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="addWinVm(vmAddForm)" class="btn btn-success" data-dismiss="modal">Add</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (click)="addWinVm(vmAddForm)" class="btn btn-success AddWinVmBtn" data-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-secondary CloseAddWinVmBtn" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

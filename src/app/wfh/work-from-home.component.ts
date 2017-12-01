@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkFromHomeComponent implements OnInit {
 
+  isLoggedIn = false;
+
   constructor() { }
 
   ngOnInit() {
   }
+  createUser(username, password) {
 
+  }
 }
