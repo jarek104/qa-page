@@ -5,13 +5,19 @@
       <div class="col-sm-12 col-md-10">
         <form id="loginForm">
           <div class="form-group input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input class="form-control" #user type="text" name='username' placeholder="email"/>
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-user"></i>
+            </span>
+            <input class="form-control" #user type="text" name='username' placeholder="email (use @hyland.com)" />
           </div>
+
           <div class="form-group input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input class="form-control" #pass type="password" name='password' placeholder="password"/>
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-lock"></i>
+            </span>
+            <input class="form-control" #pass type="password" name='password' placeholder="password" />
           </div>
+
           <div class="form-group">
             <button type="button" class="btn btn-info btn-def btn-block" (click)="login(user.value, pass.value)">Login</button>
             <p class="text-info text-center pt-2 mb-2">or</p>
@@ -21,6 +27,8 @@
       </div>
     </div>
   </div>
-  <qa-wfh-user-data *ngIf="authenticated" [user] = 'currentUser'></qa-wfh-user-data>
+  <qa-wfh-user-data *ngIf="authenticated" [user]='currentUser'></qa-wfh-user-data>
 </div>
-<div class="row"><pre>{{authState | json}}</pre></div>
+<div class="row">
+  <!-- <pre>{{currentUser}}</pre> -->
+</div>

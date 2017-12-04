@@ -46,7 +46,7 @@ export class MacVmsComponent implements OnInit {
         mvmComment: mcomments
       });
   }
-  addMacVm( form: NgForm ) {
+  addMacVm() {
     const data = {
       mvmName: this.newMacVm.mvmName,
       mvmCurrentUser: this.newMacVm.mvmCurrentUser,

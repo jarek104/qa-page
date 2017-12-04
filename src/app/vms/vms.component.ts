@@ -50,7 +50,7 @@ export class VmsComponent implements OnInit {
       });
   }
 
-  addWinVm( form: NgForm ) {
+  addWinVm() {
     const data = {
       wvmName: this.newWinVm.wvmName,
       wvmCurrentUser: this.newWinVm.wvmCurrentUser,

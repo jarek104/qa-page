@@ -102,3 +102,10 @@ td {
 .input-group-addon {
   width: 40px !important;
 }
+.ng-valid[required], .ng-valid.required  {
+  border-right: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-right: 5px solid #a94442; /* red */
+}

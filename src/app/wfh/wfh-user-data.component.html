@@ -1,4 +1,4 @@
-<h1 class="display-6 text-primary text-shadow">Logged in as {{user}}</h1>
+<h3 class="text-primary text-shadow">Logged in as {{user}}</h3>
 
 <div class='table-responsive shadow'>
     <table class="table table-bordered m-0">
@@ -22,6 +22,37 @@
         </tbody>
     </table>
 </div>
-
+<button class="btn btn-info pull-right shadow m-2" data-target="#requestWfhModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Request working from home</button>
 <button type="button" class="btn btn-info btn-def pull-right mt-2" (click)="signout()">Sign Out</button>
+<!-- Edit/Checkout Mac VM Modal -->
+<div class="modal modal-fade" id="requestWfhModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Work From Home Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="reason">Reason</label>
+                            <input type="text" class="form-control" ngControl="reason" [(ngModel)]="newRequest.reason" name="reason">
+                        </div>
+                        <div class="form-group">
+                            <label for="dayRequested">Date Requested</label>
+                            <input type="date" class="form-control" ngControl="dayRequested" [(ngModel)]="newRequest.dayRequested" name="dayRequested">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" (click)="submitWfhRequest()" data-dismiss="modal">Send</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
+            </div>
+        </div>
+    </div>
+</div>

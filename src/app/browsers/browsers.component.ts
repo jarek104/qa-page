@@ -59,7 +59,7 @@ export class BrowsersComponent implements OnInit {
       });
   }
 
-  addOnbaseVersion( form: NgForm ) {
+  addOnbaseVersion() {
     const data = {
       onbaseVersion: this.newBrowsers.onbaseVersion,
       minIE: this.newBrowsers.minIE,
