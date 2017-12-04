@@ -13,6 +13,7 @@ import { VmsProviderService } from './services/vms-provider.service';
 import { MacVmsComponent } from './vms/mac-vms.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { WorkFromHomeComponent } from './wfh/work-from-home.component';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDB9ZpAnBy6rwA7-7VpvqxhBnV06qGaqx0',
@@ -40,7 +41,7 @@ const firebaseConfig = {
     AngularFirestoreModule,
     ClipboardModule
   ],
-  providers: [],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
