@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <div *ngIf="isLoggedIn == false" class="Absolute-Center is-Responsive">
+
+    <div *ngIf="authenticated != true" class="Absolute-Center is-Responsive">
       <div class="col-sm-12 col-md-10">
         <form id="loginForm">
           <div class="form-group input-group">
@@ -20,5 +21,6 @@
       </div>
     </div>
   </div>
-  <qa-wfh-user-data *ngIf='currentUsername !== ""' [user] = 'currentUsername'></qa-wfh-user-data>
+  <qa-wfh-user-data *ngIf="authenticated" [user] = 'currentUser'></qa-wfh-user-data>
 </div>
+<div class="row"><pre>{{authState | json}}</pre></div>

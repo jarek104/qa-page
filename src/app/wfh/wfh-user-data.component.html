@@ -1,1 +1,27 @@
-<h1 class="display-5 text-primary text-shadow">You are logged in as {{user}}</h1>
+<h1 class="display-6 text-primary text-shadow">Logged in as {{user}}</h1>
+
+<div class='table-responsive shadow'>
+    <table class="table table-bordered m-0">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Date Requested</th>
+                <th>Reason</th>
+                <th>Approved</th>
+                <th>Date Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let request of requests | async" class="table-row">
+                <td>{{request.data.user}} </td>
+                <td>{{request.data.dayRequested | date:'fullDate'}} </td>
+                <td>{{request.data.reason}}</td>
+                <td>{{request.data.approved}}</td>
+                <td>{{request.data.dayRequestCreated | date:'medium'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<button type="button" class="btn btn-info btn-def pull-right mt-2" (click)="signout()">Sign Out</button>
+
