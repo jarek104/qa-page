@@ -14,6 +14,7 @@ import { MacVmsComponent } from './vms/mac-vms.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { WorkFromHomeComponent } from './wfh/work-from-home.component';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { WfhUserDataComponent } from './wfh/wfh-user-data.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDB9ZpAnBy6rwA7-7VpvqxhBnV06qGaqx0',
@@ -31,7 +32,8 @@ const firebaseConfig = {
     LinksComponent,
     BrowsersComponent,
     MacVmsComponent,
-    WorkFromHomeComponent
+    WorkFromHomeComponent,
+    WfhUserDataComponent
   ],
   imports: [
     BrowserModule,
