@@ -11,11 +11,7 @@
             </span>
             <input required class="form-control required" id="myUser" #myUser="ngModel" type="email" pattern="^\w+([\.-]?\w+)*@hyland.com" name="myUser" [(ngModel)]="loginUser.username" placeholder="email (@hyland.com)" />
           </div>
-          <div *ngIf="myUser.errors && (myUser.dirty && myUser.touched)" class="alert alert-danger">
-            <div>
-              Email must end with @hyland.com
-            </div>
-          </div>
+
           <div class="form-group input-group">
             <span class="input-group-addon" [class.text-danger]="pass.errors && (pass.dirty || pass.touched)">
               <i class="glyphicon glyphicon-lock"></i>
@@ -24,21 +20,25 @@
             [(ngModel)]="loginUser.password" placeholder="password (minimum 6 character)" />
 
           </div>
-          <div *ngIf="pass.errors && (pass.dirty && pass.touched)" class="alert alert-danger">
-              Password must be at least 6 characters long.
-          </div>
+
           <div class="form-group">
-            <button type="button" class="btn btn-info btn-def btn-block"   (click)="login()">Login</button>
+            <button type="button" class="btn btn-info btn-def btn-block"  (click)="login()">Login</button>
             <!-- [disabled]="!f.form.valid" -->
             <p class="text-info text-center pt-2 mb-2">or</p>
             <button type="button" class="btn btn-info btn-def btn-block" (click)="createUser()">Sign Up</button>
+          </div>
+          <div *ngIf="myUser.errors && (myUser.dirty && myUser.touched)" class="alert alert-danger">
+              Email must end with @hyland.com
+          </div>
+          <div *ngIf="pass.errors && (pass.dirty && pass.touched)" class="alert alert-danger">
+            Password must be at least 6 characters long.
           </div>
           <div *ngIf="error != null" class="alert alert-danger">
             {{error}}
           </div>
         </form>
       </div>
-      
+
     </div>
   </div>
   <qa-wfh-user-data *ngIf="authenticated" [user]='currentUser'></qa-wfh-user-data>
