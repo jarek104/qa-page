@@ -60,8 +60,12 @@ export class WorkFromHomeComponent implements OnInit {
       .signInWithEmailAndPassword(this.loginUser.username, this.loginUser.password)
       .then(succ => {
         this.currentUser = this.af.auth.currentUser.email;
+        this.error = null;
       })
-      .catch(err => console.log('Login error: ' + err));
+      .catch(err => {
+        console.log('Login error: ' + err);
+        this.error = err;
+      });
   }
 
 }

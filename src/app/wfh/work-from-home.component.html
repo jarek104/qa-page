@@ -2,32 +2,45 @@
   <div class="row">
 
     <div *ngIf="authenticated != true" class="Absolute-Center is-Responsive">
-      <div class="col-sm-12 col-md-10">
-        <form id="loginForm" (keydown)="keyDownFunction($event)">
+      <div class="col-md-20">
+        <form id="loginForm" (keydown)="keyDownFunction($event)" #f="ngForm">
           <div class="form-group input-group">
-            <span class="input-group-addon">
+            <span class="input-group-addon" [class.text-danger]="myUser.errors && (myUser.dirty || myUser.touched)">
+                <!-- [class.text-danger]="user.valid" -->
               <i class="glyphicon glyphicon-user"></i>
             </span>
-            <input class="form-control" #user type="text" name="user" [(ngModel)]="loginUser.username" placeholder="email (use @hyland.com)" />
+            <input required class="form-control required" id="myUser" #myUser="ngModel" type="email" pattern="^\w+([\.-]?\w+)*@hyland.com" name="myUser" [(ngModel)]="loginUser.username" placeholder="email (@hyland.com)" />
+          </div>
+          <div *ngIf="myUser.errors && (myUser.dirty && myUser.touched)" class="alert alert-danger">
+            <div>
+              Email must end with @hyland.com
+            </div>
           </div>
           <div class="form-group input-group">
-            <span class="input-group-addon">
+            <span class="input-group-addon" [class.text-danger]="pass.errors && (pass.dirty || pass.touched)">
               <i class="glyphicon glyphicon-lock"></i>
             </span>
-            <input class="form-control" #pass type="password" name="password" [(ngModel)]="loginUser.password" placeholder="password" />
-          </div>
+            <input required class="form-control required" id="password" #pass="ngModel" type="password" minlength="6" name="password" #pass="ngModel"
+            [(ngModel)]="loginUser.password" placeholder="password (minimum 6 character)" />
 
+          </div>
+          <div *ngIf="pass.errors && (pass.dirty && pass.touched)" class="alert alert-danger">
+              Password must be at least 6 characters long.
+          </div>
           <div class="form-group">
-            <button type="button" class="btn btn-info btn-def btn-block" (click)="login()">Login</button>
+            <button type="button" class="btn btn-info btn-def btn-block"   (click)="login()">Login</button>
+            <!-- [disabled]="!f.form.valid" -->
             <p class="text-info text-center pt-2 mb-2">or</p>
             <button type="button" class="btn btn-info btn-def btn-block" (click)="createUser()">Sign Up</button>
           </div>
+          <div *ngIf="error != null" class="alert alert-danger">
+            {{error}}
+          </div>
         </form>
       </div>
+      
     </div>
   </div>
   <qa-wfh-user-data *ngIf="authenticated" [user]='currentUser'></qa-wfh-user-data>
 </div>
-<div class="row">
-  <!-- <pre>{{currentUser}}</pre> -->
-</div>
+

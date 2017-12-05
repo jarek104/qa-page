@@ -110,3 +110,6 @@ td {
   color: 5px solid #a94442; /* red */
   border-right: 5px solid #a94442; /* red */
 }
+.required {
+  border: 0 !important;
+}
