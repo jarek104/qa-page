@@ -25,7 +25,8 @@ export class WfhUserDataComponent implements OnInit {
 
   ngOnInit() {
 
-    this.wfhFirestoreCollection = this.afs.collection('WFH', ref => ref.where('user', '==', this.user));
+    this.wfhFirestoreCollection = this.afs.collection('WFH', ref => ref.where(
+      'user', '==', this.user));
 
     this.requests = this.wfhFirestoreCollection.snapshotChanges().map(actions => {
       return actions.map(a => {

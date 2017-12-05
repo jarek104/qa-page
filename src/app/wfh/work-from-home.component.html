@@ -3,25 +3,24 @@
 
     <div *ngIf="authenticated != true" class="Absolute-Center is-Responsive">
       <div class="col-sm-12 col-md-10">
-        <form id="loginForm">
+        <form id="loginForm" (keydown)="keyDownFunction($event)">
           <div class="form-group input-group">
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-user"></i>
             </span>
-            <input class="form-control" #user type="text" name='username' placeholder="email (use @hyland.com)" />
+            <input class="form-control" #user type="text" name="user" [(ngModel)]="loginUser.username" placeholder="email (use @hyland.com)" />
           </div>
-
           <div class="form-group input-group">
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-lock"></i>
             </span>
-            <input class="form-control" #pass type="password" name='password' placeholder="password" />
+            <input class="form-control" #pass type="password" name="password" [(ngModel)]="loginUser.password" placeholder="password" />
           </div>
 
           <div class="form-group">
-            <button type="button" class="btn btn-info btn-def btn-block" (click)="login(user.value, pass.value)">Login</button>
+            <button type="button" class="btn btn-info btn-def btn-block" (click)="login()">Login</button>
             <p class="text-info text-center pt-2 mb-2">or</p>
-            <button type="button" class="btn btn-info btn-def btn-block" (click)="createUser(user.value, pass.value)">Sign Up</button>
+            <button type="button" class="btn btn-info btn-def btn-block" (click)="createUser()">Sign Up</button>
           </div>
         </form>
       </div>

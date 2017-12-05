@@ -41,7 +41,8 @@ const firebaseConfig = {
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    ClipboardModule
+    ClipboardModule,
+    FormsModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

@@ -2,7 +2,11 @@ import { Component, OnInit, HostBinding, Output } from '@angular/core';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+
 import * as firebase from 'firebase';
+import { AppUser } from '../data models/appuser';
+import { FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'qa-work-from-home',
@@ -13,6 +17,12 @@ export class WorkFromHomeComponent implements OnInit {
   authState: any = null;
   @Output() currentUser = '';
   error: any;
+  loginUser = new AppUser('' , '');
+
+  // loginGroup = new FormGroup({
+  //   user: new FormControl(),
+  //   password: new FormControl()
+  // });
 
   // Returns true if user is logged in
   get authenticated(): boolean {
@@ -20,10 +30,16 @@ export class WorkFromHomeComponent implements OnInit {
   }
   constructor(public af: AngularFireAuth) {}
 
+  keyDownFunction(event) {
+    if (event.keyCode === 13) {
+      this.login();
+    }
+  }
   ngOnInit() {
-    this.af.authState.subscribe((auth) => this.authState = auth);
+    this.af.authState.subscribe((auth) =>
+    this.authState = auth
+    );
     this.af.authState.subscribe((user: firebase.User) => {
-      console.log('user is: ' + user.email);
       this.currentUser = user.email;
     });
   }
@@ -31,20 +47,18 @@ export class WorkFromHomeComponent implements OnInit {
   createUser(username, password) {
     if (username !== '' || password !== '') {
       this.af.auth
-        .createUserWithEmailAndPassword(username, password)
+        .createUserWithEmailAndPassword(this.loginUser.username, this.loginUser.password)
         .then(user => {
           this.authState = user;
-          this.login(username, password); // Log in
+          this.login(); // Log in
         })
         .catch(err => console.log('Signup error: ' + err));
     }
   }
-  login(username, password) {
-    console.log('Login clicked');
+  login() {
     this.af.auth
-      .signInWithEmailAndPassword(username, password)
+      .signInWithEmailAndPassword(this.loginUser.username, this.loginUser.password)
       .then(succ => {
-        console.log('User logged in');
         this.currentUser = this.af.auth.currentUser.email;
       })
       .catch(err => console.log('Login error: ' + err));

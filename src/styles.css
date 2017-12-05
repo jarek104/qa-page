@@ -103,9 +103,10 @@ td {
   width: 40px !important;
 }
 .ng-valid[required], .ng-valid.required  {
-  border-right: 5px solid #42A948; /* green */
+  color: 5px solid #42A948; /* green */
 }
 
 .ng-invalid:not(form)  {
+  color: 5px solid #a94442; /* red */
   border-right: 5px solid #a94442; /* red */
 }
