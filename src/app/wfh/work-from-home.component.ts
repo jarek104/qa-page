@@ -45,6 +45,7 @@ export class WorkFromHomeComponent implements OnInit {
   }
 
   createUser(username, password) {
+    this.error = null;
     if (username !== '' || password !== '') {
       this.af.auth
         .createUserWithEmailAndPassword(this.loginUser.username, this.loginUser.password)
@@ -52,10 +53,14 @@ export class WorkFromHomeComponent implements OnInit {
           this.authState = user;
           this.login(); // Log in
         })
-        .catch(err => console.log('Signup error: ' + err));
+        .catch(err => {
+          console.log('Signup error: ' + err);
+          this.error = err;
+        });
     }
   }
   login() {
+    this.error = null;
     this.af.auth
       .signInWithEmailAndPassword(this.loginUser.username, this.loginUser.password)
       .then(succ => {
