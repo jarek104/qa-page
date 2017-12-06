@@ -18,11 +18,7 @@ export class WorkFromHomeComponent implements OnInit {
   @Output() currentUser = '';
   error: any;
   loginUser = new AppUser('' , '');
-
-  // loginGroup = new FormGroup({
-  //   user: new FormControl(),
-  //   password: new FormControl()
-  // });
+  passwordRecoveryEmail = '';
 
   // Returns true if user is logged in
   get authenticated(): boolean {
@@ -71,6 +67,9 @@ export class WorkFromHomeComponent implements OnInit {
         console.log('Login error: ' + err);
         this.error = err;
       });
+  }
+  forgotPassword() {
+    this.af.auth.sendPasswordResetEmail(this.passwordRecoveryEmail);
   }
 
 }
