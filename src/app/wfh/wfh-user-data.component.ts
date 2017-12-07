@@ -5,6 +5,7 @@ import { WfhRequest } from '../data models/wfhRequest';
 import { Observable } from 'rxjs/Observable';
 import { forEach } from '@angular/router/src/utils/collection';
 import * as firebase from 'firebase';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'qa-wfh-user-data',
@@ -20,8 +21,10 @@ export class WfhUserDataComponent implements OnInit {
   requestToEdit: Observable<WfhRequest>;
   list: any;
   newRequest = new WfhRequest(false, '', '' , '', '');
-  isUserAdmin: boolean;
+  isUserAdmin = false;
   adminEmail = 'jerry.olewniczak@hyland.com';
+  approvalStatus: string;
+  canEdit = false;
 
   constructor(public af: AngularFireAuth, private afs: AngularFirestore) { }
 
@@ -49,19 +52,20 @@ export class WfhUserDataComponent implements OnInit {
         });
       });
     }
+
   }
-  get canUserModify() {
-    // this.requestToEdit.
-    if (this.isUserAdmin === true) {
-      return true;
-    }else {
-      return false;
-    }
+   get canUserModify() {
+    return this.isUserAdmin;
   }
   assignWFHToEdit(requestID) {
     this.wfhFirestoreDocument = this.afs.doc('WFH/' + requestID);
     this.requestToEdit = this.wfhFirestoreDocument.valueChanges();
     console.log(requestID);
+    // this.requestToEdit.subscribe((request: WfhRequest) => {
+    //   if (request.approved == null) {
+    //     return true;
+    //   }
+    // });
   }
   signout() {
     this.af.auth.signOut();

@@ -16,7 +16,7 @@
                         <span class="input-group-addon" [class.text-danger]="pass.errors && (pass.dirty || pass.touched)">
               <i class="glyphicon glyphicon-lock"></i>
             </span>
-                        <input required class="form-control required" id="password" #pass="ngModel" type="password" minlength="6" name="password" #pass="ngModel" [(ngModel)]="loginUser.password" placeholder="password (minimum 6 character)" />
+                        <input required class="form-control required" id="password" type="password" minlength="6" name="password" #pass="ngModel" [(ngModel)]="loginUser.password" placeholder="password (minimum 6 character)" />
 
                     </div>
 
@@ -26,7 +26,7 @@
                         data-keyboard="false">Password reset</button>
                         <p class="text-info text-center pt-2 mb-2">or</p>
                         <!-- [disabled]="!f.form.valid" -->
-                        <button type="button" class="btn btn-info btn-def btn-block"  (click)="createUser()">Sign Up</button>
+                        <button type="button" class="btn btn-info btn-def btn-block" [disabled]="!f.form.valid" (click)="createUser()">Sign Up</button>
                     </div>
                     <div *ngIf="myUser.errors && (myUser.dirty && myUser.touched)" class="alert alert-danger">
                         Email must end with @hyland.com

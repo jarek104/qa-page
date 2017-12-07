@@ -50,7 +50,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success" data-dismiss="modal" [disabled]="!wfhDate.value" (click)="submitWfhRequest()">Send</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" [disabled]="!wfhDate.value" (click)="submitWfhRequest()">Send</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
             </div>
@@ -63,6 +63,8 @@
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title">Edit Request</h5>
+          <br>
+              <p #appr>{{ (requestToEdit | async)?.approved}}</p>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -72,22 +74,20 @@
                 <fieldset>
                   <div class="form-group">
                       <label for="reason">Reason</label>
-                      <!-- [(ngModel)]="newRequest.reason" -->
                       <input type="text" class="form-control" #reas name="reason" value="{{ (requestToEdit | async)?.reason}}">
                   </div>
                   <div class="form-group">
                       <label for="dayRequested">Date Requested</label>
-                      <!-- [(ngModel)]="newRequest.dayRequested" -->
                       <input type="date" class="form-control" #dreq name="dayRequested" value="{{ (requestToEdit | async)?.dayRequested}}">
                   </div>
               </fieldset>
               </form>
+              <button type="button" class="btn btn-danger pull-right ml-2" *ngIf="canUserModify" (click)="processWFHReq(false)" data-dismiss="modal">Reject</button>
+              <button type="button" class="btn btn-success pull-right" *ngIf="canUserModify" (click)="processWFHReq(true)" data-dismiss="modal">Approve</button>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-danger mr-auto" *ngIf="canUserModify" data-target="#WFHConfirmDeleteModal" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Delete</button>
               <button type="button" (click)="updateRequest(reas.value, dreq.value)" *ngIf="canUserModify" class="btn btn-success" data-dismiss="modal">Save</button>
-              <button type="button" class="btn btn-secondary" *ngIf="canUserModify" (click)="processWFHReq(true)" data-dismiss="modal">Approve</button>
-              <button type="button" class="btn btn-secondary" *ngIf="canUserModify" (click)="processWFHReq(false)" data-dismiss="modal">Reject</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
       </div>
