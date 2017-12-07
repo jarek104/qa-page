@@ -6,7 +6,7 @@
                 <form id="loginForm" (keydown)="keyDownFunction($event)" #f="ngForm">
                     <div class="form-group input-group">
                         <span class="input-group-addon" [class.text-danger]="myUser.errors && (myUser.dirty || myUser.touched)">
-                <!-- [class.text-danger]="user.valid" -->
+
               <i class="glyphicon glyphicon-user"></i>
             </span>
                         <input required class="form-control required" id="myUser" #myUser="ngModel" type="email" pattern="^\w+([\.-]?\w+)*@hyland.com" name="myUser" [(ngModel)]="loginUser.username" placeholder="email (@hyland.com)" />
@@ -16,14 +16,16 @@
                         <span class="input-group-addon" [class.text-danger]="pass.errors && (pass.dirty || pass.touched)">
               <i class="glyphicon glyphicon-lock"></i>
             </span>
-                        <input required class="form-control required" id="password" #pass="ngModel" type="password" minlength="6" name="password" #pass="ngModel" [(ngModel)]="loginUser.password" placeholder="password (minimum 6 character)" />
+                        <input required class="form-control required" id="password" type="password" minlength="6" name="password" #pass="ngModel" [(ngModel)]="loginUser.password" placeholder="password (minimum 6 character)" />
 
                     </div>
 
                     <div class="form-group">
                         <button type="button" class="btn btn-info btn-def btn-block" (click)="login()">Login</button>
-                        <!-- [disabled]="!f.form.valid" -->
+                        <button type="button" class="btn btn-info btn-def btn-block" data-target="#forgotPasswordDialog" data-toggle="modal" data-backdrop="static"
+                        data-keyboard="false">Password reset</button>
                         <p class="text-info text-center pt-2 mb-2">or</p>
+                        <!-- [disabled]="!f.form.valid" -->
                         <button type="button" class="btn btn-info btn-def btn-block" [disabled]="!f.form.valid" (click)="createUser()">Sign Up</button>
                     </div>
                     <div *ngIf="myUser.errors && (myUser.dirty && myUser.touched)" class="alert alert-danger">
@@ -41,4 +43,32 @@
         </div>
     </div>
     <qa-wfh-user-data *ngIf="authenticated" [user]='currentUser'></qa-wfh-user-data>
+</div>
+<!-- Forgot password dialog -->
+<div class="modal modal-fade" id="forgotPasswordDialog" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Recover your password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          </div>
+          <div class="modal-body">
+              <form>
+                  <fieldset>
+                      <div class="form-group">
+                          <label for="email">Email address</label>
+                          <input type="text" class="form-control" [(ngModel)]="passwordRecoveryEmail" name="email">
+                      </div>
+                  </fieldset>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-success" (click)="forgotPassword()" data-dismiss="modal">Send password reset link</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+          </div>
+      </div>
+  </div>
 </div>

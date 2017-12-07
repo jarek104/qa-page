@@ -18,11 +18,7 @@ export class WorkFromHomeComponent implements OnInit {
   @Output() currentUser = '';
   error: any;
   loginUser = new AppUser('' , '');
-
-  // loginGroup = new FormGroup({
-  //   user: new FormControl(),
-  //   password: new FormControl()
-  // });
+  passwordRecoveryEmail = '';
 
   // Returns true if user is logged in
   get authenticated(): boolean {
@@ -44,9 +40,10 @@ export class WorkFromHomeComponent implements OnInit {
     });
   }
 
-  createUser(username, password) {
+  createUser() {
     this.error = null;
-    if (username !== '' || password !== '') {
+    
+    if (this.loginUser.username.includes('@hyland.com') && this.loginUser.username !== '' && this.loginUser.password !== '') {
       this.af.auth
         .createUserWithEmailAndPassword(this.loginUser.username, this.loginUser.password)
         .then(user => {
@@ -57,6 +54,8 @@ export class WorkFromHomeComponent implements OnInit {
           console.log('Signup error: ' + err);
           this.error = err;
         });
+    }else {
+      this.error = 'Email must end with @hyland.com and password must be at least 6 characters';
     }
   }
   login() {
@@ -65,6 +64,8 @@ export class WorkFromHomeComponent implements OnInit {
       .signInWithEmailAndPassword(this.loginUser.username, this.loginUser.password)
       .then(succ => {
         this.currentUser = this.af.auth.currentUser.email;
+        this.loginUser.username = '';
+        this.loginUser.password = '';
         this.error = null;
       })
       .catch(err => {
@@ -72,5 +73,7 @@ export class WorkFromHomeComponent implements OnInit {
         this.error = err;
       });
   }
-
+  forgotPassword() {
+      this.af.auth.sendPasswordResetEmail(this.passwordRecoveryEmail);
+  }
 }
