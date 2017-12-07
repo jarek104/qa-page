@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let request of requests | async" class="table-row">
+            <tr *ngFor="let request of requests | async" class="table-row clickable" data-target="#EditWFHRequest" data-toggle="modal" data-backdrop="static" data-keyboard="false" (click)="assignWFHToEdit(request.id)">
                 <td>{{request.data.user}} </td>
                 <td>{{request.data.dayRequested | date:'fullDate'}} </td>
                 <td>{{request.data.reason}}</td>
@@ -23,9 +23,9 @@
     </table>
 </div>
 <br>
-<button class="btn btn-info pull-right shadow m-2" data-target="#requestWfhModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Request working from home</button>
+<button class="btn btn-info pull-right shadow m-2" *ngIf="!isUserAdmin" data-target="#requestWfhModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Request working from home</button>
 <button type="button" class="btn btn-info btn-def pull-right mt-2" (click)="signout()">Sign Out</button>
-<!-- Edit/Checkout Mac VM Modal -->
+<!-- Request Work From Home Modal -->
 <div class="modal modal-fade" id="requestWfhModal" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -40,7 +40,7 @@
                     <fieldset>
                         <div class="form-group">
                             <label for="reason">Reason</label>
-                            <input type="text" class="form-control" [(ngModel)]="newRequest.reason" name="reason">
+                            <input type="text" class="form-control" #reason [(ngModel)]="newRequest.reason" name="reason">
                         </div>
                         <div class="form-group">
                             <label for="dayRequested">Date Requested</label>
@@ -50,10 +50,67 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success" [disabled]="!wfhDate.value" (click)="submitWfhRequest()" data-dismiss="modal">Send</button>
+                <button class="btn btn-success" data-dismiss="modal" [disabled]="!wfhDate.value" (click)="submitWfhRequest()">Send</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
             </div>
         </div>
     </div>
+</div>
+<!-- Edit WFH Modal -->
+<div class="modal modal-fade" id="EditWFHRequest" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Edit Request</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          </div>
+          <div class="modal-body">
+              <form #EditWFHRequestForm="ngForm">
+                <fieldset>
+                  <div class="form-group">
+                      <label for="reason">Reason</label>
+                      <!-- [(ngModel)]="newRequest.reason" -->
+                      <input type="text" class="form-control" #reas name="reason" value="{{ (requestToEdit | async)?.reason}}">
+                  </div>
+                  <div class="form-group">
+                      <label for="dayRequested">Date Requested</label>
+                      <!-- [(ngModel)]="newRequest.dayRequested" -->
+                      <input type="date" class="form-control" #dreq name="dayRequested" value="{{ (requestToEdit | async)?.dayRequested}}">
+                  </div>
+              </fieldset>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger mr-auto" *ngIf="canUserModify" data-target="#WFHConfirmDeleteModal" data-dismiss="modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Delete</button>
+              <button type="button" (click)="updateRequest(reas.value, dreq.value)" *ngIf="canUserModify" class="btn btn-success" data-dismiss="modal">Save</button>
+              <button type="button" class="btn btn-secondary" *ngIf="canUserModify" (click)="processWFHReq(true)" data-dismiss="modal">Approve</button>
+              <button type="button" class="btn btn-secondary" *ngIf="canUserModify" (click)="processWFHReq(false)" data-dismiss="modal">Reject</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Confirm Delete Windows VM Modal-->
+<div class="modal modal-fade" id="WFHConfirmDeleteModal">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Delete Request</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+              <p>Are you sure you want to delete this Request?</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="deleteRequest()" data-target="#EditWFHRequest" data-dismiss="modal">Yes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+  </div>
 </div>

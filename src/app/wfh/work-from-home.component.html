@@ -25,7 +25,8 @@
                         <button type="button" class="btn btn-info btn-def btn-block" data-target="#forgotPasswordDialog" data-toggle="modal" data-backdrop="static"
                         data-keyboard="false">Password reset</button>
                         <p class="text-info text-center pt-2 mb-2">or</p>
-                        <button type="button" class="btn btn-info btn-def btn-block" [disabled]="!f.form.valid" (click)="createUser()">Sign Up</button>
+                        <!-- [disabled]="!f.form.valid" -->
+                        <button type="button" class="btn btn-info btn-def btn-block"  (click)="createUser()">Sign Up</button>
                     </div>
                     <div *ngIf="myUser.errors && (myUser.dirty && myUser.touched)" class="alert alert-danger">
                         Email must end with @hyland.com

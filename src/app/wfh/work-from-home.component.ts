@@ -40,9 +40,9 @@ export class WorkFromHomeComponent implements OnInit {
     });
   }
 
-  createUser(username, password) {
+  createUser(username: string, password: string) {
     this.error = null;
-    if (username !== '' || password !== '') {
+    if (username !== '' && password !== '') {
       this.af.auth
         .createUserWithEmailAndPassword(this.loginUser.username, this.loginUser.password)
         .then(user => {
@@ -53,6 +53,8 @@ export class WorkFromHomeComponent implements OnInit {
           console.log('Signup error: ' + err);
           this.error = err;
         });
+    }else {
+      this.error = 'Email must end with @hyland.com and password must be at least 6 characters';
     }
   }
   login() {
@@ -69,7 +71,6 @@ export class WorkFromHomeComponent implements OnInit {
       });
   }
   forgotPassword() {
-    this.af.auth.sendPasswordResetEmail(this.passwordRecoveryEmail);
+      this.af.auth.sendPasswordResetEmail(this.passwordRecoveryEmail);
   }
-
 }

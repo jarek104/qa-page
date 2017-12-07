@@ -13,37 +13,63 @@ import * as firebase from 'firebase';
 })
 export class WfhUserDataComponent implements OnInit {
 
-  @Input() user: Observable<firebase.User>;
+  @Input() user;
   wfhFirestoreCollection: AngularFirestoreCollection<WfhRequest>;
   wfhFirestoreDocument: AngularFirestoreDocument<WfhRequest>;
   requests: any;
   requestToEdit: Observable<WfhRequest>;
   list: any;
   newRequest = new WfhRequest(false, '', '' , '', '');
+  isUserAdmin: boolean;
+  adminEmail = 'jerry.olewniczak@hyland.com';
 
   constructor(public af: AngularFireAuth, private afs: AngularFirestore) { }
 
   ngOnInit() {
+    if (this.user === this.adminEmail) {
+        this.isUserAdmin = true;
+        this.wfhFirestoreCollection = this.afs.collection('WFH', ref => ref.orderBy('user', 'desc'));
 
-    this.wfhFirestoreCollection = this.afs.collection('WFH', ref => ref.where(
-      'user', '==', this.user));
+          this.requests = this.wfhFirestoreCollection.snapshotChanges().map(actions => {
+            return actions.map(a => {
+              const data = a.payload.doc.data() as WfhRequest;
+              const id = a.payload.doc.id;
+              return { id, data };
+            });
+          });
+    } else {
+      this.wfhFirestoreCollection = this.afs.collection('WFH', ref => ref.where(
+        'user', '==', this.user));
 
-    this.requests = this.wfhFirestoreCollection.snapshotChanges().map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as WfhRequest;
-        const id = a.payload.doc.id;
-        return { id, data };
+      this.requests = this.wfhFirestoreCollection.snapshotChanges().map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as WfhRequest;
+          const id = a.payload.doc.id;
+          return { id, data };
+        });
       });
-    });
+    }
   }
-
+  get canUserModify() {
+    // this.requestToEdit.
+    if (this.isUserAdmin === true) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+  assignWFHToEdit(requestID) {
+    this.wfhFirestoreDocument = this.afs.doc('WFH/' + requestID);
+    this.requestToEdit = this.wfhFirestoreDocument.valueChanges();
+    console.log(requestID);
+  }
   signout() {
     this.af.auth.signOut();
   }
 
   submitWfhRequest() {
     const data = {
-      approved: false,
+      approved: null,
       dayRequested: this.newRequest.dayRequested,
       dayRequestCreated: Date.now(),
       reason: this.newRequest.reason,
@@ -51,10 +77,31 @@ export class WfhUserDataComponent implements OnInit {
     };
     this.afs.collection('WFH').add(data);
     this.resetForm();
-    window.open('mailto:jerry.olewniczak@hyland.com?subject=Work From Home request waiting.&body= http://localhost:4200/#/wfh');
+    const message = 'mailto:' + this.adminEmail + '?subject=Work From Home request waiting.&body= http://localhost:4200/#/wfh';
+    window.open(message);
   }
   resetForm() {
     this.newRequest.reason = '';
     this.newRequest.dayRequested = '';
   }
- }
+  deleteRequest() {
+    this.wfhFirestoreDocument.delete();
+  }
+  updateRequest(reas, dreq) {
+    this.wfhFirestoreDocument
+    .update({
+      reason: reas,
+      dayRequested: dreq
+    });
+  }
+  processWFHReq(value) {
+    this.wfhFirestoreDocument
+    .update({
+      approved: value
+    });
+    const msg = 'mailto:' + this.adminEmail + '?subject=Your Work From Home request was ' +
+      ((value) ? 'approved.' : 'rejected.') + '&body=http://localhost:4200/#/wfh';
+      console.log(msg);
+    window.open(msg);
+  }
+  }
